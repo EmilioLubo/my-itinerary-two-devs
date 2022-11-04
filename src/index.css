@@ -5,11 +5,63 @@
   --main: #00749C;
   --live: #D0A23D;
 }
-
 *{
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+  font-family: 'Courier New', Courier, monospace;
+}
+button{
+  background-color: transparent;
+  border: none;
+}
+a{
+  text-decoration: none;
+  color: black;
+}
+.bg-light{
+  background-color: var(--main);
+}
+.drop-icon{
+  width: 2rem;
+  margin: .5rem;
+}
+.drop-list{
+  position: absolute;
+  list-style: none;
+}
+.user-icon{
+  width: 3rem;
+}
+.action-button{
+  font-size: 2em;
+  color: var(--lighter);
+  text-shadow:
+    0 0 7px var(--light),
+    0 0 10px #60c5d5,
+    0 0 21px #55bbce,
+    0 0 42px #46afc5,
+    0 0 82px #35a0bb,
+    0 0 92px #2593b2,
+    0 0 102px #1484a8,
+    0 0 151px var(--main);
+}
+.sticky-top{
+  position: sticky;
+  top: 0;
+}
+.g-3{
+  gap: 3rem;
+}
+.m-1{
+  margin: .5rem;
+}
+.mt-5{
+  margin-top: 10rem;
+}
+.w-25{
+  width: 25%;
+
 }
 .w-100{
   width: 100%;
@@ -20,8 +72,13 @@
 .flex{
   display: flex;
 }
+
+.f-column{
+  flex-direction: column;
+
 .j-between{
   justify-content: space-between;
+
 }
 .j-center{
   justify-content: center;
@@ -29,6 +86,19 @@
 .j-evenly{
   justify-content: space-evenly;
 }
+
+.j-between{
+  justify-content: space-between;
+}
+.align-center{
+  align-items: center;
+}
+.hidden{
+  display: none;
+}
+.text-end{
+  text-align: end;
+
 .al-center{
   align-items: center;
 }
@@ -105,4 +175,5 @@
   background-color: aqua;
   font-size: 30px;
   font-weight: bold;
+
 }
