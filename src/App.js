@@ -1,8 +1,12 @@
+import React from "react";
+import Home2 from "./layouts/Home2";
+
+
 
 function App() {
   return (
     <div>
-      <h1>App created</h1>
+      <Home2></Home2>
     </div>
   );
 }
