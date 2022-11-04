@@ -2,8 +2,8 @@
     "HotelAndCasino": [
         {
             "id": "h1",
-            "name": "Crowne Plaza Dubai Jumeirah",
-            "photo": ["https://digital.ihg.com/is/image/ihg/crowne-plaza-dubai-7117772365-3x2","https://digital.ihg.com/is/image/ihg/crowne-plaza-dubai-7885053936-3x2","https://digital.ihg.com/is/image/ihg/crowne-plaza-dubai-7856491860-3x2"],
+            "name": "Crowne-Plaza-Dubai-Jumeirah",
+            "photo": ["https://www.detectahotel.com/rimg/himg/fc/83/f9/revato-12087-6161660-661324.jpg?width=1366&height=768&crop=true"],
             "capacity": 4300,
             "cityid": "3",
             "userid": "admin1"
