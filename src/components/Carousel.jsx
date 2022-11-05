@@ -16,8 +16,8 @@ export default function Carousel() {
         let res = await fetch('/data/cities.json')
         res = await res.json()
         res = res.cities
-        let dato = res.slice(0,6)
-        res = [...res.slice(0,7)] 
+        let dato = [...res.slice(0,6)]
+        res = res.slice(0,7)
         res= res[num]
         setData(res)
         setId(dato)
@@ -53,13 +53,15 @@ export default function Carousel() {
         dato3(num)
     },[num])
     useEffect(()=>{
-        let id = setInterval(()=>{
+        let idinterval = setInterval(()=>{
             next()
         },3000
     )
-    setClean(id)
+    setClean(idinterval)
     return clearInterval(clean)
 },[id])
+
+
 
     function next(){
         if(num < id.length-1){
@@ -78,6 +80,7 @@ export default function Carousel() {
         }
         clearInterval(clean)
     }
+    
 
     return (
     <div className='flex'>  
