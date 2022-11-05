@@ -24,7 +24,7 @@ export default function Login() {
     }
     
     return (
-    <form onSubmit={submit} className='form-log flex f-column align-center j-evenly '>
+    <form onSubmit={submit} className='form-log flex f-column align-center j-evenly w-100 h-75'>
     <div className='inputs j-center f-column '>
         <label>
         <legend>User or Email</legend>
