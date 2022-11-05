@@ -13,8 +13,8 @@ export const Home1 = () => {
             <h1 className="text-end">...we make it happens</h1>
         </div>
         <div className="w-100 flex j-evenly mt-5">
-            <CallToAcion name='view Cities...'/>
-            <CallToAcion name='view Hotels...'/>
+            <CallToAcion legend='view Cities...'/>
+            <CallToAcion legend='view Hotels...'/>
         </div>
     </main>
     </>
