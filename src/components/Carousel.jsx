@@ -55,12 +55,10 @@ export default function Carousel() {
     useEffect(()=>{
         let id = setInterval(()=>{
             next()
-        },3000
-    )
+        },3000 )
     setClean(id)
     return clearInterval(clean)
-},[id])
-
+    },[id])
     function next(){
         if(num < id.length-1){
             setNum(num +1)
@@ -69,7 +67,6 @@ export default function Carousel() {
         }
         clearInterval(clean)
     }
-
     function prev (){
         if(num>0){
             setNum(num -1)

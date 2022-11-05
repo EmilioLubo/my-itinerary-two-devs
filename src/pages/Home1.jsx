@@ -3,7 +3,8 @@ import { CallToAcion } from '../components/CallToAcion'
 
 export const Home1 = () => {
   return (
-    <main className='w-100 h-100 flex f-column align-center j-center g-3 bg-light'>
+    <>
+    <main className='w-100 h-100 flex f-column align-center j-center g-3 bg-main'>
         <div className="w-25">
             <h2>Just dream it...</h2>
             <div className="flex j-center">
@@ -12,9 +13,10 @@ export const Home1 = () => {
             <h1 className="text-end">...we make it happens</h1>
         </div>
         <div className="w-100 flex j-evenly mt-5">
-            <CallToAcion name='cities'/>
-            <CallToAcion name='hotels'/>
+            <CallToAcion name='view Cities...'/>
+            <CallToAcion name='view Hotels...'/>
         </div>
     </main>
+    </>
   )
 }
