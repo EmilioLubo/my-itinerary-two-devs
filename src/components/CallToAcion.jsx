@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export const CallToAcion = ({name}) => {
+export const CallToAcion = ({legend}) => {
   return (
-    <Link className="action-button">View {name}...</Link>
+    <Link className="action-button">{legend}</Link>
   )
 }

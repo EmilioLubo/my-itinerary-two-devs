@@ -4,6 +4,7 @@ import Arrow from './Arrow'
 import PhotoB from './PhotoB'
 
 export default function Carousel() {
+
     let [num,setNum]= useState(0)
     let [data,setData] = useState([])
     let [id,setId] = useState([])
@@ -55,14 +56,10 @@ export default function Carousel() {
     useEffect(()=>{
         let idinterval = setInterval(()=>{
             next()
-        },3000
-    )
-    setClean(idinterval)
-    return clearInterval(clean)
-},[id])
-
-
-
+        },3000 )
+        setClean(idinterval)
+        return clearInterval(clean)
+    },[id])
     function next(){
         if(num < id.length-1){
             setNum(num +1)
@@ -71,7 +68,6 @@ export default function Carousel() {
         }
         clearInterval(clean)
     }
-
     function prev (){
         if(num>0){
             setNum(num -1)
@@ -80,8 +76,7 @@ export default function Carousel() {
         }
         clearInterval(clean)
     }
-    
-
+   
     return (
     <div className='flex'>  
         <Arrow dir='<' onClick={prev} ></Arrow>
