@@ -1,7 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export const Card = ({id, name, photo, description}) => {
+
+
+export default function Card  ({name, photo, description}) {
+
 
     return (
         <div>
