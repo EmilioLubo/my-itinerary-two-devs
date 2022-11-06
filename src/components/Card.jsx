@@ -1,6 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-export const Card = ({name, photo, description}) => {
+export const Card = ({id, name, photo, description}) => {
 
     return (
         <div>
@@ -9,6 +10,7 @@ export const Card = ({name, photo, description}) => {
             <article className='card-body'>
                 <h4 className='text-center'>{name}</h4>
                 <p className='text-center'>{description}</p>
+                <Link to={`/cities/${id}`}>View details...</Link>
             </article>
         </div>
         </div>
