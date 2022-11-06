@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Card = ({name, photo, description}) => {
+export default function Card  ({name, photo, description}) {
 
     return (
         <div>

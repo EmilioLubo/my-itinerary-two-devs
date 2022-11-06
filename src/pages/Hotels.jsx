@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import Card from '../components/Card'
+import CardHotel from '../components/CardHotel'
 
 export default function Hotels() {
     let [data,setData]= useState([])
@@ -27,25 +27,7 @@ export default function Hotels() {
         console.log(valor)
     }
 
-    let [num,setNum]= useState(0)
-    let [clean,setClean] = useState(0)
 
-    function next(){
-        if(num < photo.length-1){
-            setNum(num +1)
-        }else{
-            setNum(0)
-        }
-        clearInterval(clean)
-    }
-
-useEffect(()=>{
-    let idinterval = setInterval(()=>{
-        next()
-    },3000 )
-    setClean(idinterval)
-    return clearInterval(clean)
-},[num])
 
   return (
     <div className='w-100 min-h flex j-evenly wrap gap-3 p-5'>
@@ -53,14 +35,14 @@ useEffect(()=>{
         <form className='w-100 flex j-evenly mb-3 '>
             <input placeholder='Buscar...' onChange={inputs}/>
             <select onChange={selected}>
-                <option value=''>Select</option>
+                <option>Select</option>
                 <option value='top' >Ascend</option>
                 <option value='down'>Descend</option>
             </select>
         </form>
     </div>
         {
-            data.map(item=> <Card name={item.name} photo={item[num].photo} key={item.id} description={item.capacity}/>)
+            data.map(item=> <CardHotel name={item.name} photo={item.photo} key={item.id} description={item.capacity}/>)
         }
     </div>
   )
