@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from 'react'
+import { Link } from 'react-router-dom'
 
-export default function CardHotel({name, photo, description}) {
+export default function CardHotel({name, photo, description,id}) {
     let [num,setNum]= useState(0)
     let [clean,setClean] = useState(0)
 
@@ -28,6 +29,7 @@ useEffect(()=>{
             <article className='card-body'>
                 <h4 className='text-center'>{name}</h4>
                 <p className='text-center'>{description}</p>
+                <Link to={`/Hotels/${id}`}>View shows...</Link>
             </article>
         </div>
     </div>

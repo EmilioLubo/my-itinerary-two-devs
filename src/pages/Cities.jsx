@@ -49,7 +49,7 @@ export const Cities = () => {
             </div>
             <div className='w-100 min-h flex j-evenly wrap gap-3 p-5'>
                 {
-                    cities.map(item=> <Card name={item.name} photo={item.photo} key={item.id} description={item.continent}/>)
+                    cities.map(item=> <Card name={item.name} id={item.id} photo={item.photo} key={item.id} description={item.continent}/>)
                 }
             </div>
         </>
