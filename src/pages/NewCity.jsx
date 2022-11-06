@@ -20,7 +20,7 @@ export const NewCity = () => {
     }
 
   return (
-    <div className='w-100 h-100 flex f-column g-3'>
+    <div className='w-100 h-75 flex f-column g-3'>
         <h1 className="text-center">New City</h1>
         <form className='flex f-column g-1 p-5 fs-3' onSubmit={submit}>
             <input className="fs-2" type="text" name='name' placeholder='Enter city name...' required/>

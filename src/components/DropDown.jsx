@@ -22,7 +22,7 @@ export const DropDown = () => {
                 <ul className={`${isOpen ? '' : 'hidden'} drop-list`}>
                     <li><Link to='/'>Home</Link></li>
                     <li><Link to="/cities">Cities</Link></li>
-                    <li><Link>Hotels</Link></li>
+                    <li><Link to='/Hotels'>Hotels</Link></li>
                 </ul>
             </div>
   )

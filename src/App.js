@@ -10,6 +10,7 @@ import { Cities } from "./pages/Cities";
 import { City } from "./pages/City";
 import { NewCity } from "./pages/NewCity";
 import { Hotel } from "./pages/Hotel";
+import NewHotel from "./pages/NewHotel";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Route path="/cities" element={<Cities/>}/>
       <Route path="/cities/:id" element={<City/>}/>
       <Route path="/newcity" element={<NewCity/>}/>
+      <Route path="/newhotel" element={<NewHotel/>}/>
       <Route path="/Hotels/:id" element={<Hotel/>}/>
       <Route path="*" element={<NotFoundPage/>}></Route>
     </Routes>
