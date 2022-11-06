@@ -1,14 +1,6 @@
 {
     "hotels": [
         {
-            "id": "1",
-            "name": "Crowne-Plaza-Dubai-Jumeirah",
-            "photo": ["https://media-cdn.tripadvisor.com/media/photo-s/26/68/98/4d/burj-khalifa.jpg"],
-            "capacity": 4300,
-            "cityid": "3",
-            "userid": "admin1"
-        },
-        {
             "id": "2",
             "name": "InterContinental Dubai Marina",
             "photo":["https://digital.ihg.com/is/image/ihg/intercontinental-dubai-4930171863-2x1?fit=fit,1&wid=2880&hei=1440&qlt=85,0&resMode=sharp2&op_usm=1.75,0.9,2,0","https://digital.ihg.com/is/image/ihg/intercontinental-dubai-4930171844-2x1?fit=fit,1&wid=2880&hei=1440&qlt=85,0&resMode=sharp2&op_usm=1.75,0.9,2,0","https://digital.ihg.com/is/image/ihg/intercontinental-dubai-6051224202-2x1?fit=fit,1&wid=2880&hei=1440&qlt=85,0&resMode=sharp2&op_usm=1.75,0.9,2,0"],
@@ -95,6 +87,15 @@
             "capacity": 3200,
             "cityid": "2",
             "userid": "admin4"
+        },
+        {
+            "id":"1",
+            "name":"plaza dubai crown",
+            "photo":["https://media-cdn.tripadvisor.com/media/photo-s/26/68/98/4d/burj-khalifa.jpg","https://digital.ihg.com/is/image/ihg/crowne-plaza-dubai-7024949190-4x3","https://www.detectahotel.com/rimg/himg/fc/83/f9/revato-12087-6161660-661324.jpg?width=1366&height=768&crop=true"],
+            "capacity":"4300",
+            "cityid":"3",
+            "userid":"admin1"
         }
+        
     ]
 }
