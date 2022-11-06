@@ -20,7 +20,7 @@ export const LogInWrapper = () => {
                 <img className='user-icon' src="/img/user_icon.png" alt="user icon" />
             </button>
             <ul className={`${showLogin ? '' : 'hidden'} drop-list`}>
-                <li><Link>Sign in</Link></li>
+                <li><Link to="/login">Sign in</Link></li>
                 <li><Link to='/signup'>Sign up</Link></li>
             </ul>
         </div>
