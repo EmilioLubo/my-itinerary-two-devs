@@ -13,7 +13,7 @@ export const Home1 = () => {
             <h1 className="text-end">...we make it happens</h1>
         </div>
         <div className="w-100 flex j-evenly mt-5">
-            <CallToAcion legend='view Cities...'/>
+            <CallToAcion path={'/cities'} legend='view Cities...'/>
             <CallToAcion legend='view Hotels...'/>
         </div>
     </main>
