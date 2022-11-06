@@ -7,6 +7,7 @@ import {SignUp} from './pages/SignUp.jsx'
 import Login from "./pages/SingIn";
 import Hotels from "./pages/Hotels";
 import { Cities } from "./pages/Cities";
+import { City } from "./pages/City";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/login" element={<Login/>} />
             <Route path="/Hotels" element={<Hotels/>}/>
             <Route path="/cities" element={<Cities/>}/>
+            <Route path="/cities/:id" element={<City/>}/>
             <Route path="*" element={<NotFoundPage/>}></Route>
           </Routes>
         </Layout>
