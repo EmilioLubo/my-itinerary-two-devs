@@ -15,6 +15,9 @@ button{
   background-color: transparent;
   border: none;
 }
+.min-h{
+  min-height: 50vh;
+}
 a{
   text-decoration: none;
   color: black;
@@ -64,6 +67,9 @@ a{
 }
 .m-1{
   margin: .5rem;
+}
+.mb-3{
+  margin-bottom: 3rem;
 }
 .mt-5{
   margin-top: 10rem;
@@ -268,4 +274,34 @@ hr{
   height:30px;
   background-color: white;
   border-radius: 2px;
+}
+
+.wrap{
+  flex-wrap: wrap;
+}
+
+
+.card1 {
+  width: 18rem;
+  height: 20rem;
+  margin: 0.5rem 0 1.5rem 0;
+  box-shadow: 5px 5px 10px 10px rgb(101, 97, 97);
+}
+.card-body{
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+  
+}
+
+.card img:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  transition: all 0.7s;
+}
+
+.img{
+  border-radius: 2rem;
+  padding: 1rem;
+  width: 100%;
 }
