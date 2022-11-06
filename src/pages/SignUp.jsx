@@ -10,6 +10,7 @@ export const SignUp = () => {
         fetch('/data/users.json')
             .then(res => res.json())
             .then(data => setUser(data.users))
+            .catch(err => console.log(err.message))
     })
 
     let submit = (e) => {
@@ -25,7 +26,7 @@ export const SignUp = () => {
                 password: e.target.password.value,
             }
             let userRef = user.find(el => el.name === newUser.name && el.lastName === newUser.lastName)
-            userRef ? navigate('/') : localStorage.setItem('new user', JSON.stringify(newUser))
+            userRef ? navigate('/login') : localStorage.setItem('new user', JSON.stringify(newUser))
             navigate('/')
         }
     }
@@ -44,7 +45,7 @@ export const SignUp = () => {
                 <input className='w-50 fs-2' type="reset" value="Clear Form" />
                 <input className='w-50 fs-2' type="submit" value="Submit" />
             </div>
-            <a className='align-s-center google' href="https://www.google.com/">Login with Google</a>
+            <a className='align-s-center' href="https://www.google.com/"><img className='google' src='/img/png-clipart-google-search-google-account-google-s-google-play-google-company-text.png' alt='google logo'/></a>
         </form>
     </div>
   )

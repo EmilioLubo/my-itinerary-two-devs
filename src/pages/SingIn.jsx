@@ -40,7 +40,7 @@ export default function Login() {
         <hr></hr>
         <p>Or</p>
         <hr/>
-    <div className='btn flex j-evenly align-center'>Login With Google <img className='google ' src='/img/png-clipart-google-search-google-account-google-s-google-play-google-company-text.png'/> </div>
+    <div className='btn flex j-evenly align-center'>Login With Google <img className='google ' src='/img/png-clipart-google-search-google-account-google-s-google-play-google-company-text.png' alt='google logo'/> </div>
     </div>
     <hr/>
     <div className='btn'>Register Here!</div>
