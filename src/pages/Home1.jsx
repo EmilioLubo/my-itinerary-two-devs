@@ -14,7 +14,7 @@ export const Home1 = () => {
         </div>
         <div className="w-100 flex j-evenly mt-5">
             <CallToAcion path={'/cities'} legend='view Cities...'/>
-            <CallToAcion legend='view Hotels...'/>
+            <CallToAcion path={'/Hotels'} legend='view Hotels...'/>
         </div>
     </main>
     </>

@@ -8,7 +8,7 @@ export default function Hotels() {
     const dato = async()=>{
         let res = await fetch('/data/hotels.json')
         res = await res.json()
-        res = res.HotelAndCasino 
+        res = res.hotels
         setData(res)
     }
 
@@ -42,7 +42,7 @@ export default function Hotels() {
         </form>
     </div>
         {
-            data.map(item=> <CardHotel name={item.name} photo={item.photo} key={item.id} description={item.capacity}/>)
+            data.map(item=> <CardHotel name={item.name} photo={item.photo} key={item.id} id={item.id} description={item.capacity}/>)
         }
     </div>
   )

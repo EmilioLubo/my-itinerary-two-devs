@@ -77,6 +77,9 @@ a{
 .mt-5{
   margin-top: 10rem;
 }
+.mb-2{
+  margin-bottom: 2rem;
+}
 .w-25{
   width: 25%;
 }
@@ -123,9 +126,7 @@ a{
 .j-evenly{
   justify-content: space-evenly;
 }
-.j-between{
-  justify-content: space-between;
-}
+
 .align-center{
   align-items: center;
 }
@@ -303,4 +304,24 @@ hr{
 }
 .min-h{
   min-height:50vh;
+}
+
+.detail-img{
+  width: 35rem;
+}
+.act-card{
+  padding: 1rem;
+  width: 23rem;
+  margin: 0.5rem 0 1.5rem 0;
+  box-shadow: 5px 5px 10px 10px rgb(101, 97, 97);
+}
+.act-img{
+  width: 100%;
+  height: 15rem;
+  object-fit: cover;
+}
+@media screen and (max-width: 765px){
+  .detail-img{
+    width: 100%;
+  }
 }
