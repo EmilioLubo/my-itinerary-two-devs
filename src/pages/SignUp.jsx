@@ -25,7 +25,7 @@ export const SignUp = () => {
                 email: e.target.email.value,
                 password: e.target.password.value,
             }
-            let userRef = user.find(el => el.name === newUser.name && el.lastName === newUser.lastName)
+            let userRef = user.find(el => el.name.toUpperCase() === newUser.name.toUpperCase() && el.lastName.toUpperCase() === newUser.lastName.toUpperCase())
             userRef ? navigate('/login') : localStorage.setItem('new user', JSON.stringify(newUser))
             navigate('/')
         }
