@@ -12,7 +12,9 @@ export const City = () => {
         fetch('/data/cities.json')
             .then(res => res.json())
             .then(data => setCity(data.cities.find(el => el.id === parseInt(id))))
-    },[city])
+    },[])
+
+console.log(city)
 
   return (
     <div className='w-100'>

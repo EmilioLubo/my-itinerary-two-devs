@@ -34,7 +34,7 @@ export default function Carousel() {
     const dato1 = async(num)=>{
         let res = await fetch('/data/hotels.json')
         res = await res.json()
-        res = res.HotelAndCasino
+        res = res.hotels
         res = res.slice(0,6)
         res = res[num]
         setData1(res)
@@ -42,7 +42,7 @@ export default function Carousel() {
     const dato3 = async(num)=>{
         let res = await fetch('/data/hotels.json')
         res = await res.json()
-        res = res.HotelAndCasino
+        res = res.hotels
         res = res.slice(6,13)
         res = res[num]
         setData3(res)

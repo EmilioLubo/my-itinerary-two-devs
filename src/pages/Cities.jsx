@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Card } from '../components/Card'
+import Card from '../components/Card'
 
 export const Cities = () => {
 
     let [cities, setCities] = useState([])
     let [checked, setChecked] = useState([])
-    // eslint-disable-next-line
     let [searched, setSearched] = useState()
 
     useEffect(() => {
@@ -50,7 +49,7 @@ export const Cities = () => {
             </div>
             <div className='w-100 min-h flex j-evenly wrap gap-3 p-5'>
                 {
-                    cities.map(item=> <Card id={item.id} name={item.name} photo={item.photo} key={item.id} description={item.continent}/>)
+                    cities.map(item=> <Card name={item.name} id={item.id} photo={item.photo} key={item.id} description={item.continent}/>)
                 }
             </div>
         </>
