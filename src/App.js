@@ -7,6 +7,7 @@ import {SignUp} from './pages/SignUp.jsx'
 import Login from "./pages/SingIn";
 import { Cities } from "./pages/Cities";
 import { City } from "./pages/City";
+import { NewCity } from "./pages/NewCity";
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
             <Route path="/login" element={<Login/>} />
             <Route path="/cities" element={<Cities/>}/>
             <Route path="/cities/:id" element={<City/>}/>
-            <Route path="*" element={<NotFoundPage/>}></Route>
+            <Route path="/newcity" element={<NewCity/>}/>
+            <Route path="*" element={<NotFoundPage/>}/>
           </Routes>
         </Layout>
     
