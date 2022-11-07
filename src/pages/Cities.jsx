@@ -5,7 +5,6 @@ export const Cities = () => {
 
     let [cities, setCities] = useState([])
     let [checked, setChecked] = useState([])
-    // eslint-disable-next-line
     let [searched, setSearched] = useState()
 
     useEffect(() => {

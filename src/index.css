@@ -23,66 +23,27 @@ a{
   color: black;
 }
 .bg-main{
-  background-image: url('https://images.unsplash.com/photo-1484821582734-6c6c9f99a672?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1033&q=80');
-  background-repeat: no-repeat;
-  background-size: cover;
-
-}
-.nav-bg{
-  background-color: var(--lighter);
-}
-.nav-logo{
-  width: 7rem;
-}
-.nav-link:hover{
-  color: var(--main)
+  background-color: var(--main);
 }
 .banner{
   background-image: image('/public/img/pexels-pixabay-164041.jpg');
 }
 .drop-icon{
-  width: 3rem;
+  width: 2rem;
   margin: .5rem;
 }
-.drop-icon:hover{
-  border-radius: 50%;
-  transition: all 1s;
-  transform: translatey(-10px);
-  box-shadow: 1px 1px black;
-}
 .drop-list{
-  font-size: 1.2em;
-  background-color: var(--lighter);
   position: absolute;
   list-style: none;
 }
 .user-icon{
-  width: 4rem;
-  margin-right: 1rem;
-}
-.user-icon:hover{
-  border-radius: 50%;
-  transition: all 1s;
-  transform: translatey(-10px);
-  box-shadow: 1px 1px black;
-}
-.list-border{
-  text-align: center;
-  min-width: rem;
-  border: solid black;
-  border-radius: 5%;
-  margin-right: .2rem;
+  width: 3rem;
 }
 .action-button{
-  text-align: center;
   font-size: 2em;
-  font-weight: 600;
-  color: black;
-  border: solid var(--live);
-  border-radius: 5%;
-  padding: .5rem;
+  color: var(--lighter);
   text-shadow:
-    0 0 7px var(--lighter),
+    0 0 7px var(--light),
     0 0 10px #60c5d5,
     0 0 21px #55bbce,
     0 0 42px #46afc5,
@@ -90,15 +51,6 @@ a{
     0 0 92px #2593b2,
     0 0 102px #1484a8,
     0 0 151px var(--main);
-}
-.action-button:hover{
-  transition: all 1s;
-  background-color: var(--light);
-  border-color: black;
-  color: var(--live);
-}
-.action-button:active{
-  color: black;
 }
 .input-validation{
   border: double red;
@@ -113,9 +65,6 @@ a{
 .g-3{
   gap: 3rem;
 }
-.p-1{
-  padding: .5rem;
-}
 .p-5{
   padding: 5rem;
 }
@@ -129,13 +78,10 @@ a{
   margin-top: 2rem;
 }
 .mt-5{
-  margin-top: 5rem;
+  margin-top: 10rem;
 }
 .mb-2{
   margin-bottom: 2rem;
-}
-.me-3{
-  margin-right: 2rem;
 }
 .w-25{
   width: 25%;
@@ -394,7 +340,6 @@ hr{
   .detail-img{
     width: 100%;
   }
-
 }
 @media screen and (max-width:800px){
   .carousel{
@@ -420,15 +365,4 @@ hr{
     width: 90%;
   }
   
-
-  .action-group{
-    flex-direction: column;
-    gap: 1rem;
-    padding: 0px 1rem;
-  }
-}
-@media screen and (min-width: 1024px){
-  .main-text{
-    font-size: 2.5em;
-  }
 }
