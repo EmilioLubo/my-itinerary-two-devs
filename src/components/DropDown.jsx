@@ -1,20 +1,23 @@
 import React, {useState, useEffect} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useLocation} from 'react-router-dom'
 
 export const DropDown = () => {
 
     let [isOpen, setIsOpen] = useState(false)
+    let location = useLocation()
 
     useEffect(() => {
         if(isOpen){
             document.addEventListener('mousedown', e => {
                 if(e.target.className !== 'nav-link' && e.target.className !== 'drop-icon'){
-                    setIsOpen(!isOpen)
+                    setIsOpen(false)
                 }
             })
         }
     })
-
+    useEffect(() => {
+        setIsOpen(false)
+    }, [location])
     let keyHandler = (ev) => {
         if(ev.key === 'Escape'){
             setIsOpen(false)
