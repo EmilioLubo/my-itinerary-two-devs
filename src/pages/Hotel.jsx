@@ -12,9 +12,11 @@ export const Hotel = () => {
 
 
     let dato = async()=>{
+        // eslint-disable-next-line
         let res = await fetch('/data/hotels.json')
         res = await res.json()
         res = res.hotels
+        // eslint-disable-next-line
         res = setHotel(res.find(el=> el.id == parseInt(id)))
     }
 
