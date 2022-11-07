@@ -6,7 +6,7 @@ export const Activity = ({name, photo, description, price, duration}) => {
         <img className='act-img' src={photo} alt={name} />
         <h3 className='text-center'>{name}</h3>
         <p>{description}</p>
-        <p>Duration: {duration} hs.</p>
+        <p>{duration}</p>
         <p>Price: $ {price.toFixed(2)}</p>
     </div>
   )
