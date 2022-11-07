@@ -6,8 +6,8 @@
   --live: #D0A23D;
 }
 *{
-  margin: 0px;
-  padding: 0px;
+  margin: 0rem;
+  padding: 0rem;
   box-sizing: border-box;
   font-family: 'Courier New', Courier, monospace;
 }
