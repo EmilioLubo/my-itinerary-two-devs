@@ -20,10 +20,10 @@ console.log(city)
     <div className='w-100'>
         <h1 className='text-center'>City detail</h1>
         <div>
-            <Detail name={city.name} photo={city.photo} continent={city.continent} population={'Population: ' + new Intl.NumberFormat().format(city.population)}/>
+            <Detail name={city.name} photo={city.photo} continent={city.continent} population={new Intl.NumberFormat().format(city.population)}/>
             <Itinerary id={city.id}/>
         </div>
-        <div className='flex j-center mt-2 mb-2'>
+        <div className='flex j-center mb-2'>
             <button className='btn'>Comments</button>
         </div>
     </div>

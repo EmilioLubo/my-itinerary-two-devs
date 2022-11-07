@@ -16,10 +16,8 @@ export default function Footer() {
           <Link to='/cities' className='link'>Cities</Link>
           <Link className='link'>Hotels</Link>
       </div>
-      <div className='flex f-column'>
-        <p className='copyr'>copyright @ twoDevs</p>
-        <a className='repo-links' href="https://github.com/EmilioLubo">Emilio Lubo</a>
-        <a className='repo-links' href="https://github.com/Estebanfonseca">Esteban Fonseca</a>
+      <div>
+        <p>@copyright</p>
       </div>
     </div>
   )

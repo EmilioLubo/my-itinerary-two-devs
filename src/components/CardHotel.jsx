@@ -26,10 +26,10 @@ useEffect(()=>{
     <div>
         <div className='card1 '>
             <img className='img ' src={photo[num]} alt={name} height="250" />
-            <article className='card-body flex f-column g-1 j-between align-center'>
+            <article className='card-body'>
                 <h4 className='text-center'>{name}</h4>
-                <p className='text-center'>Capacity: {new Intl.NumberFormat().format(description)}</p>
-                <Link className='card-button' to={`/Hotels/${id}`}>View shows...</Link>
+                <p className='text-center'>{description}</p>
+                <Link to={`/Hotels/${id}`}>View shows...</Link>
             </article>
         </div>
     </div>

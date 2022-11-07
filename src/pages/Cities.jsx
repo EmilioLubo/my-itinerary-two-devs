@@ -5,7 +5,6 @@ export const Cities = () => {
 
     let [cities, setCities] = useState([])
     let [checked, setChecked] = useState([])
-    // eslint-disable-next-line
     let [searched, setSearched] = useState()
 
     useEffect(() => {
@@ -37,18 +36,18 @@ export const Cities = () => {
                     {
                         Array.from(new Set(cities.map(city => city.continent))).map(el => {
                             return (
-                                        <label className='check-label' key={el}>
-                                            <input onClick={checkHandler} type='checkbox' value={el} /> {el}
+                                        <label key={el}>
+                                            <input onClick={checkHandler} type='checkbox' value={el} />{el}
                                         </label>
                                     )
                         })
                     }
                 </div>
                 <div className='flex j-center mt-2'>
-                    <input className='search-input' onChange={inputHandler} type="text" placeholder='Search by city name'/>
+                    <input onChange={inputHandler} type="text" placeholder='Search by city name...'/>
                 </div>
             </div>
-            <div className='w-100 min-h flex j-evenly wrap g-5 p-5'>
+            <div className='w-100 min-h flex j-evenly wrap gap-3 p-5'>
                 {
                     cities.map(item=> <Card name={item.name} id={item.id} photo={item.photo} key={item.id} description={item.continent}/>)
                 }

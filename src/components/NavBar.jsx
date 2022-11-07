@@ -6,9 +6,9 @@ import { LogInWrapper } from './LogInWrapper'
 export const NavBar = () => {
 
   return (
-    <nav className="w-100 flex j-between align-center sticky-top nav-bg">
+    <nav className="w-100 flex j-between sticky-top">
         <div className="flex align-center">
-            <Link className="m-1" to="/"><img className='nav-logo' src="/img/logo_transparent.png" alt="Logo" /></Link>
+            <Link className="m-1" to="/">LOGO</Link>
             <DropDown/>
         </div>
         <LogInWrapper/>

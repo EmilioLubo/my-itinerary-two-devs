@@ -9,7 +9,6 @@ export const ShowsH = ({id}) => {
     useEffect(() => {
         fetch('/data/eventshotels.json')
             .then(res => res.json())
-            // eslint-disable-next-line
             .then(data => setActivities(data.shows.filter(el => el.hotelid == parseInt(id))))
     })
 

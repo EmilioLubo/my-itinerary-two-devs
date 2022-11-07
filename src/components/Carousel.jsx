@@ -76,7 +76,7 @@ export default function Carousel() {
     }
 
     return (
-        <div className="flex w-100">
+        <div className=" flex w-100 ">
             <Arrow dir="<" onClick={prev}></Arrow>
             <div className='carousel'>
                 <Photo id={data.id} photo={data.photo} name={data.name}></Photo>
