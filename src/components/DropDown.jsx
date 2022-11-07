@@ -14,7 +14,7 @@ export const DropDown = () => {
                 }
             })
         }
-    })
+    }, [isOpen])
     useEffect(() => {
         setIsOpen(false)
     }, [location])
