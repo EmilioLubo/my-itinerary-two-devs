@@ -1,10 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-
-
-export default function Card  ({name, photo, description}) {
-
+export default function Card  ({name, photo, description,id}) {
 
     return (
         <div>
@@ -17,5 +14,5 @@ export default function Card  ({name, photo, description}) {
             </article>
         </div>
         </div>
-      )
+    )
     }

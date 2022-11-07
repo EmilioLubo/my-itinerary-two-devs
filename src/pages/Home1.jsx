@@ -3,8 +3,8 @@ import { CallToAcion } from '../components/CallToAcion'
 
 export const Home1 = () => {
   return (
-    <>
-    <main className='w-100 h-100 flex f-column align-center j-center g-3 bg-main'>
+
+    <main className='bg-main w-100 h-100 flex f-column align-center j-center g-3 '>
         <div className="w-25">
             <h2>Just dream it...</h2>
             <div className="flex j-center">
@@ -14,9 +14,9 @@ export const Home1 = () => {
         </div>
         <div className="w-100 flex j-evenly mt-5">
             <CallToAcion path={'/cities'} legend='view Cities...'/>
-            <CallToAcion legend='view Hotels...'/>
+            <CallToAcion path={'/Hotels'} legend='view Hotels...'/>
         </div>
     </main>
-    </>
+
   )
 }
