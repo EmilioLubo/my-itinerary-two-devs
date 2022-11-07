@@ -5,7 +5,7 @@ import ScrollToTop from '../components/ScrollToTop'
 
 export const Layout = ({children}) => {
   return (
-    <div>
+    <div >
         <NavBar/>
         {children}
         <ScrollToTop/>

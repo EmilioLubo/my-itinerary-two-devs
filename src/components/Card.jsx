@@ -14,5 +14,5 @@ export default function Card  ({name, photo, description,id}) {
             </article>
         </div>
         </div>
-      )
+    )
     }
