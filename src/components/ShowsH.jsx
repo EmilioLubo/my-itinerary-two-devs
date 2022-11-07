@@ -19,7 +19,7 @@ export const ShowsH = ({id}) => {
   return (
     <div className='flex j-center wrap g-3 mt-2'>
         {
-        activities.map(el => <Activity key={el.id} name={el.name} photo={el.photo} description={el.description} duration={el.date} price={el.price}/>)
+        activities.map(el => <Activity key={el.id} name={el.name} photo={el.photo} description={el.description} duration={'Date: ' + el.date} price={el.price}/>)
     }
     </div>
   )
