@@ -23,27 +23,66 @@ a{
   color: black;
 }
 .bg-main{
-  background-color: var(--main);
+  background-image: url('https://images.unsplash.com/photo-1484821582734-6c6c9f99a672?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1033&q=80');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.nav-bg{
+  background-color: var(--lighter);
+}
+.nav-logo{
+  width: 7rem;
+}
+.nav-link:hover{
+  color: var(--main)
 }
 .banner{
   background-image: image('/public/img/pexels-pixabay-164041.jpg');
 }
 .drop-icon{
-  width: 2rem;
+  width: 3rem;
   margin: .5rem;
 }
+.drop-icon:hover{
+  border-radius: 50%;
+  transition: all 1s;
+  transform: translatey(-10px);
+  box-shadow: 1px 1px black;
+}
 .drop-list{
+  font-size: 1.2em;
+  background-color: var(--lighter);
   position: absolute;
   list-style: none;
 }
 .user-icon{
-  width: 3rem;
+  width: 4rem;
+  margin-right: 1rem;
+}
+.user-icon:hover{
+  border-radius: 50%;
+  transition: all 1s;
+  transform: translatey(-10px);
+  box-shadow: 1px 1px black;
+}
+.list-border{
+  text-align: center;
+  min-width: rem;
+  border: solid black;
+  border-radius: 5%;
+  margin-right: .2rem;
 }
 .action-button{
+  text-align: center;
   font-size: 2em;
-  color: var(--lighter);
+  font-weight: 600;
+  color: black;
+  border: solid var(--live);
+  border-radius: 5%;
+  padding: .5rem;
   text-shadow:
-    0 0 7px var(--light),
+    0 0 7px var(--lighter),
     0 0 10px #60c5d5,
     0 0 21px #55bbce,
     0 0 42px #46afc5,
@@ -51,6 +90,15 @@ a{
     0 0 92px #2593b2,
     0 0 102px #1484a8,
     0 0 151px var(--main);
+}
+.action-button:hover{
+  transition: all 1s;
+  background-color: var(--light);
+  border-color: black;
+  color: var(--live);
+}
+.action-button:active{
+  color: black;
 }
 .input-validation{
   border: double red;
@@ -65,6 +113,12 @@ a{
 .g-3{
   gap: 3rem;
 }
+.g-5{
+  gap: 5rem;
+}
+.p-1{
+  padding: .5rem;
+}
 .p-5{
   padding: 5rem;
 }
@@ -78,10 +132,13 @@ a{
   margin-top: 2rem;
 }
 .mt-5{
-  margin-top: 10rem;
+  margin-top: 5rem;
 }
 .mb-2{
   margin-bottom: 2rem;
+}
+.me-3{
+  margin-right: 2rem;
 }
 .w-25{
   width: 25%;
@@ -154,9 +211,11 @@ a{
   width: 100%;
   height: 12rem;
   object-fit:cover;
+  padding: .5rem;
+  border-radius: 5%;
 }
 .img-404{
-  width: 20rem;
+  width: 18rem;
   height: 20rem;
   object-fit: cover;
   border-radius: 1rem;
@@ -213,14 +272,14 @@ a{
   height: 15vh;
 }
 .card{
-  background-color: gray;
+  background-color: var(--lighter);
   width: 100%;
   height: 15rem;
 }
 .row{
   width: 5%;
   min-height: 15rem;
-  background-color: aqua;
+  background-color: var(--live);
   font-size: 30px;
   font-weight: bold;
 }
@@ -291,8 +350,11 @@ hr{
   flex-wrap: wrap;
 }
 .card1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 18rem;
-  height: 20rem;
+  height: 24rem;
   margin: 0.5rem 0 1.5rem 0;
   box-shadow: 5px 5px 10px 10px rgb(101, 97, 97);
 }
@@ -306,19 +368,47 @@ hr{
   cursor: pointer;
   transition: all 0.7s;
 }
+.card-button{
+  font-weight: 600;
+  border: solid var(--live);
+  border-radius: 5%;
+  padding: .5rem;
+  margin-bottom: .5rem;
+}
+.card-button:hover{
+  transition: all 1s;
+  transform: translateY(-5px);
+  box-shadow: 1px 1px black;
+}
+.card-button:active{
+  transition: none;
+  background-color: var(--lighter);
+}
 .img{
   border-radius: 2rem;
   padding: 1rem;
   width: 100%;
 }
+.carousel-container{
+  background-color: var(--stronger);
+}
 .carousel{
   display: flex;
   width: 100%;
 }
+.carousel-text{
+  font-weight: 600;
+}
 .min-h{
   min-height:50vh;
 }
-
+.search-input{
+  font-size: 1.3em;
+}
+.check-label{
+  font-weight: 600;
+  font-size: 1.2em;
+}
 .detail-img{
   width: 35rem;
 }
@@ -336,12 +426,41 @@ hr{
 .hc-75{
   height: 75vh;
 }
+.copyr{
+  font-weight: 600;
+}
+.repo-links{
+  text-align: center;
+  font-weight: 600;
+  text-decoration: underline;
+  color: black;
+}
+.repo-links:hover{
+  color: var(--stronger);
+}
+.repo-links:active{
+  color: #000;
+}
+@media screen and (max-width: 320px){
+  .check-label{
+    font-size: .8em;
+  }
+}
+@media screen and (max-width: 420px){
+  .act-card{
+    margin: 0px 1rem;
+    font-size: .8em;
+  }
+}
 @media screen and (max-width: 765px){
   .detail-img{
     width: 100%;
   }
 }
 @media screen and (max-width:800px){
+    .form-log{
+    min-height: 100vh;
+  }
   .carousel{
     min-height: 20vh;
     flex-direction: column;
@@ -364,5 +483,14 @@ hr{
   .inputs,.btn,hr,.separate hr{
     width: 90%;
   }
-  
+  .action-group{
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0px 1rem;
+  }
+}
+@media screen and (min-width: 1024px){
+  .main-text{
+    font-size: 2.5em;
+  }
 }
