@@ -113,6 +113,9 @@ a{
 .g-3{
   gap: 3rem;
 }
+.g-5{
+  gap: 5rem;
+}
 .p-1{
   padding: .5rem;
 }
@@ -208,9 +211,11 @@ a{
   width: 100%;
   height: 12rem;
   object-fit:cover;
+  padding: .5rem;
+  border-radius: 5%;
 }
 .img-404{
-  width: 20rem;
+  width: 18rem;
   height: 20rem;
   object-fit: cover;
   border-radius: 1rem;
@@ -267,14 +272,14 @@ a{
   height: 15vh;
 }
 .card{
-  background-color: gray;
+  background-color: var(--lighter);
   width: 100%;
   height: 15rem;
 }
 .row{
   width: 5%;
   min-height: 15rem;
-  background-color: aqua;
+  background-color: var(--live);
   font-size: 30px;
   font-weight: bold;
 }
@@ -345,8 +350,11 @@ hr{
   flex-wrap: wrap;
 }
 .card1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 18rem;
-  height: 20rem;
+  height: 24rem;
   margin: 0.5rem 0 1.5rem 0;
   box-shadow: 5px 5px 10px 10px rgb(101, 97, 97);
 }
@@ -360,19 +368,47 @@ hr{
   cursor: pointer;
   transition: all 0.7s;
 }
+.card-button{
+  font-weight: 600;
+  border: solid var(--live);
+  border-radius: 5%;
+  padding: .5rem;
+  margin-bottom: .5rem;
+}
+.card-button:hover{
+  transition: all 1s;
+  transform: translateY(-5px);
+  box-shadow: 1px 1px black;
+}
+.card-button:active{
+  transition: none;
+  background-color: var(--lighter);
+}
 .img{
   border-radius: 2rem;
   padding: 1rem;
   width: 100%;
 }
+.carousel-container{
+  background-color: var(--stronger);
+}
 .carousel{
   display: flex;
   width: 100%;
 }
+.carousel-text{
+  font-weight: 600;
+}
 .min-h{
   min-height:50vh;
 }
-
+.search-input{
+  font-size: 1.3em;
+}
+.check-label{
+  font-weight: 600;
+  font-size: 1.2em;
+}
 .detail-img{
   width: 35rem;
 }
@@ -390,13 +426,41 @@ hr{
 .hc-75{
   height: 75vh;
 }
+.copyr{
+  font-weight: 600;
+}
+.repo-links{
+  text-align: center;
+  font-weight: 600;
+  text-decoration: underline;
+  color: black;
+}
+.repo-links:hover{
+  color: var(--stronger);
+}
+.repo-links:active{
+  color: #000;
+}
+@media screen and (max-width: 320px){
+  .check-label{
+    font-size: .8em;
+  }
+}
+@media screen and (max-width: 420px){
+  .act-card{
+    margin: 0px 1rem;
+    font-size: .8em;
+  }
+}
 @media screen and (max-width: 765px){
   .detail-img{
     width: 100%;
   }
-
 }
 @media screen and (max-width:800px){
+    .form-log{
+    min-height: 100vh;
+  }
   .carousel{
     min-height: 20vh;
     flex-direction: column;
@@ -419,8 +483,6 @@ hr{
   .inputs,.btn,hr,.separate hr{
     width: 90%;
   }
-  
-
   .action-group{
     flex-direction: column;
     gap: 1rem;

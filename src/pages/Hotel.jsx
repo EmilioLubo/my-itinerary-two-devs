@@ -30,10 +30,10 @@ export const Hotel = () => {
     <div className='w-100'>
         <h1 className='text-center'>shows detail</h1>
         <div>
-            <Detail name={hotel.name} photo={hotel.photo} continent={hotel.capacity} population={new Intl.NumberFormat().format(hotel.cityid)}/>
+            <Detail name={hotel.name} photo={hotel.photo} continent={'Capacity: ' + new Intl.NumberFormat().format(hotel.capacity)}/>
             <ShowsH id={hotel.id}/>
         </div>
-        <div className='flex j-center mb-2'>
+        <div className='flex j-center mt-2 mb-2'>
             <button className='btn'>Comments</button>
         </div>
     </div>

@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-
+import {Link} from 'react-router-dom'
 
 export default function Login() {
     let [username,setUser] = useState([])
@@ -25,6 +25,7 @@ export default function Login() {
     
     return (
     <form onSubmit={submit} className='form-log flex f-column align-center j-evenly w-100 h-75'>
+        <h1 className="text-center">Sign in</h1>
     <div className='inputs j-center f-column '>
         <label>
         <legend>User or Email</legend>
@@ -43,7 +44,7 @@ export default function Login() {
     <div className='btn flex j-evenly align-center'>Login With Google <img className='google ' src='/img/png-clipart-google-search-google-account-google-s-google-play-google-company-text.png' alt='google logo'/> </div>
     </div>
     <hr/>
-    <div className='btn'>Register Here!</div>
+    <Link to="/signup" className='btn'>Register Here!</Link>
     </form>
     )
 }
