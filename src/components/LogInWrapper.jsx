@@ -14,7 +14,7 @@ export const LogInWrapper = () => {
                 }
             })
         }
-    })
+    }, [showLogin])
     useEffect(() => {
         setShowLogin(false)
     }, [location])
