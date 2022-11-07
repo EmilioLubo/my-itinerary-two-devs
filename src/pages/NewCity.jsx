@@ -20,9 +20,9 @@ export const NewCity = () => {
     }
 
   return (
-    <div className='w-100 h-75 flex f-column g-3'>
+    <div className='w-100 h-75 flex f-column g-3 new-div'>
         <h1 className="text-center">New City</h1>
-        <form className='flex f-column g-1 p-5 fs-3' onSubmit={submit}>
+        <form className='new-form flex f-column g-1 p-5 fs-3' onSubmit={submit}>
             <input className="fs-2" type="text" name='name' placeholder='Enter city name...' required/>
             <select className="fs-2" name='continent' value={selectDefault} onChange={handleSelect} required>
                 <option disabled value={''}>Select a continent</option>    
@@ -36,7 +36,7 @@ export const NewCity = () => {
             </select>
             <input className="fs-2" type="number" name="population" min={1} placeholder='Enter city population...' required/>
             <input className="fs-2" type='url' name="photo" placeholder='Enter city URL image'/>
-            <div className='flex j-between'>
+            <div className='new-buttons flex j-between'>
                 <input className='w-50 fs-2' type="reset" value="Clear Form" />
                 <input className='w-50 fs-2' type="submit" value="Submit" />
             </div>

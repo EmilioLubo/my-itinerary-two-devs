@@ -1,20 +1,23 @@
 import React, {useEffect, useState} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useLocation} from 'react-router-dom'
 
 export const LogInWrapper = () => {
 
     let [showLogin, setShowLogin] = useState(false)
+    let location = useLocation()
 
     useEffect(() => {
         if(showLogin){
             document.addEventListener('mousedown', e => {
                 if(e.target.className !== 'nav-link' && e.target.className !== 'user-icon'){
-                    setShowLogin(!showLogin)
+                    setShowLogin(false)
                 }
             })
         }
-    })
-
+    }, [showLogin])
+    useEffect(() => {
+        setShowLogin(false)
+    }, [location])
     let keyHandler = (ev) => {
         if(ev.key === 'Escape'){
             setShowLogin(false)

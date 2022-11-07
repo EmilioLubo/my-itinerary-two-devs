@@ -6,8 +6,8 @@
   --live: #D0A23D;
 }
 *{
-  margin: 0px;
-  padding: 0px;
+  margin: 0rem;
+  padding: 0rem;
   box-sizing: border-box;
   font-family: 'Courier New', Courier, monospace;
 }
@@ -451,6 +451,12 @@ hr{
     margin: 0px 1rem;
     font-size: .8em;
   }
+  .new-form{
+    padding: 1rem;
+  }
+  .new-div{
+    height: 55vh;
+  }
 }
 @media screen and (max-width: 765px){
   .detail-img{
@@ -458,6 +464,11 @@ hr{
   }
 }
 @media screen and (max-width:800px){
+    .new-buttons{
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
     .form-log{
     min-height: 100vh;
   }
