@@ -31,17 +31,17 @@ export default function Hotels() {
 
 
   return (
-    <div className='w-100 min-h flex j-evenly wrap gap-3 p-5'>
-    <div className='w-100'>
-        <form className='w-100 flex j-evenly mb-3 '>
-            <input placeholder='Buscar...' onChange={inputs}/>
-            <select  name='Select' value={selectDefault} onChange={hand} >
-                <option>Select</option>
-                <option value='top' >Ascend</option>
-                <option value='down'>Descend</option>
-            </select>
-        </form>
-    </div>
+    <div className='w-100 min-h flex j-evenly wrap g-3 p-5'>
+        <div className='w-100'>
+            <form className='w-100 flex j-evenly mb-3 '>
+                <input placeholder='Buscar...' onChange={inputs}/>
+                <select  name='Select' value={selectDefault} onChange={hand} >
+                    <option>Select</option>
+                    <option value='top' >Ascend</option>
+                    <option value='down'>Descend</option>
+                </select>
+            </form>
+        </div>
         {
             data.map(item=> <CardHotel name={item.name} photo={item.photo} key={item.id} id={item.id} description={item.capacity}/>)
         }

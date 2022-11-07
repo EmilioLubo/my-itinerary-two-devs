@@ -24,7 +24,7 @@ export const Itinerary = ({id}) => {
   return (
     <div className='flex j-center wrap g-3 mt-2'>
         {
-        activities.map(el => <Activity key={el.id} name={el.name} photo={el.photo[count]} description={el.description} duration={el.duration} price={el.price}/>)
+        activities.map(el => <Activity key={el.id} name={el.name} photo={el.photo[count]} description={el.description} duration={'Duracion:'+el.duration + 'hs.'} price={el.price}/>)
     }
     </div>
   )

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 export const SignUp = () => {
 
@@ -32,21 +33,25 @@ export const SignUp = () => {
     }
 
   return (
-    <div className='w-100 h-100 flex f-column g-3'>
-        <h1 className="text-center">Sign up</h1>
-        <form className='flex f-column g-1 p-5 fs-3' onSubmit={submit}>
-            <input className="fs-2" type="text" name='fName' placeholder='Enter your name...' required/>
-            <input className="fs-2" type="text" name='lName' placeholder='Enter your last name...' required/>
-            <input className="fs-2" type="number" name="age" placeholder='Enter your age...(18+)' min={18} max={100} required/>
-            <input className="fs-2" type="email" name="email" placeholder='Enter your email...' required/>
-            <input className="fs-2" type="password" name="password" placeholder='Enter your password' required/>
-            <input className="fs-2" type="password" name="confirmPassword" placeholder='Confirm your password' required/>
-            <div className='flex j-between'>
-                <input className='w-50 fs-2' type="reset" value="Clear Form" />
-                <input className='w-50 fs-2' type="submit" value="Submit" />
+        <form className='form-log flex f-column align-center j-evenly w-100 h-75' onSubmit={submit}>
+            <h1 className="text-center">Sign up</h1>
+            <div className='inputs j-center f-column'>
+                <input className="fs-2" type="text" name='fName' placeholder='Enter your name...' required/>
+                <input className="fs-2" type="text" name='lName' placeholder='Enter your last name...' required/>
+                <input className="fs-2" type="number" name="age" placeholder='Enter your age...(18+)' min={18} max={100} required/>
+                <input className="fs-2" type="email" name="email" placeholder='Enter your email...' required/>
+                <input className="fs-2" type="password" name="password" placeholder='Enter your password' required/>
+                <input className="fs-2" type="password" name="confirmPassword" placeholder='Confirm your password' required/>
             </div>
-            <a className='align-s-center' href="https://www.google.com/"><img className='google' src='/img/png-clipart-google-search-google-account-google-s-google-play-google-company-text.png' alt='google logo'/></a>
+            <div className='flex separate j-center'>
+                <input className='btn' type="submit" value="Submit" />
+                <hr></hr>
+                <p>Or</p>
+                <hr/>
+                <div className='btn flex j-evenly align-center'>Login With Google <img className='google ' src='/img/png-clipart-google-search-google-account-google-s-google-play-google-company-text.png' alt='google logo'/> </div>
+            </div>
+            <hr/>
+            <Link to="/login" className='btn'>Login Here!</Link>
         </form>
-    </div>
   )
 }
