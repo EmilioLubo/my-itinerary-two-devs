@@ -15,10 +15,14 @@ export const NewCity = () => {
             continent: e.target.continent.value,
             photo: photo,
             population: e.target.population.value,
+            userId: '636d210297606439046194bb'
         }
         /* localStorage.setItem('new city', JSON.stringify(newCity)) */
         axios.post('http://localhost:8080/api/cities', newCity)
-        navigate('/cities')
+            .then(res => {
+                console.log(res.data)
+                navigate('/cities')
+            })
     }
     let handleSelect = (e) => {
         setSelectDefault(e.target.value)
