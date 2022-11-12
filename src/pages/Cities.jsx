@@ -36,8 +36,9 @@ export const Cities = () => {
     }
     let inputHandler = (e) => {
         setSearched(e.target.value.trim())
+        
     }
-
+    console.log(searched)
     return (
         <>
             <div>

@@ -1,17 +1,26 @@
 import React from 'react'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export default function NewHotel() {
-
+    let navigate = useNavigate()
 
     let submit = (e) =>{
         e.preventDefault()
         let photo = e.target.photo.value || '/img/no-image.png'
+
         let newhotel = {
             name: e.target.name.value,
             photo: photo,
-            capacity: e.target.capacity.value,
+            capacity: e.target.population.value,
+            cityID:"636d3af27ccd7c6ea97b82e2",
+            userID:"636d210297606439046194ba"
         }
-        localStorage.setItem('new city', JSON.stringify(newhotel))
+        axios.post('http://localhost:8080/api/hotels', newhotel)
+            .then(res => {
+                console.log(res.data)
+                navigate('/hotels')
+            })
     }
 
   return (
