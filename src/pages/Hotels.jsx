@@ -18,6 +18,7 @@ export default function Hotels() {
     },[])
 
     useEffect(()=>{
+
         // eslint-disable-next-line
         if(selectDefault == 0){
             axios.get(`${apiUrl}/hotels?name=${searched}`)
@@ -44,8 +45,8 @@ export default function Hotels() {
     <div className='w-100 min-h flex j-evenly wrap g-3 p-5'>
         <div className='w-100'>
             <form className='w-100 flex j-evenly mb-3 '>
-                <input placeholder='Buscar...' onChange={inputs} type='text'/>
-                <select  name='Select' value={selectDefault} onChange={hand} >
+                <input className='search-input' placeholder='Buscar...' onChange={inputs} type='text'/>
+                <select className='search-input' name='Select' value={selectDefault} onChange={hand} >
                     <option value='0'>Select</option>
                     <option value='1' >Ascend</option>
                     <option value='-1'>Descend</option>
@@ -55,7 +56,7 @@ export default function Hotels() {
         {
             data.length > 0 ?
             data.map(item=> <CardHotel name={item.name} photo={item.photo} key={item._id} id={item._id} description={item.capacity}/>):
-            <h2>Hotels not found</h2>
+            <h2 className='min-h-50'>Hotels not found</h2>
         }
     </div>
   )
