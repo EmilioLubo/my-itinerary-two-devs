@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import apiUrl from '../url'
 
 export const NewCity = () => {
 
@@ -17,12 +18,13 @@ export const NewCity = () => {
             population: e.target.population.value,
             userId: '636d210297606439046194bb'
         }
-        /* localStorage.setItem('new city', JSON.stringify(newCity)) */
-        axios.post('http://localhost:8080/api/cities', newCity)
+        axios.post(`${apiUrl}/cities`, newCity)
             .then(res => {
                 console.log(res.data)
                 navigate('/cities')
             })
+            .catch(err => console.log(err.message))
+
     }
     let handleSelect = (e) => {
         setSelectDefault(e.target.value)
