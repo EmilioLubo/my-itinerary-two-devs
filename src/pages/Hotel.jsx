@@ -17,7 +17,7 @@ export const Hotel = () => {
     },[])
 
   return (
-    <div className='w-100'>
+    <div className='w-100 bg-hotel'>
         <h1 className='text-center'>Hotel detail</h1>
         <div>
             <Detail  name={hotel.name} photo={hotel.photo} continent={'Capacity: ' + new Intl.NumberFormat().format(hotel.capacity)}   />

@@ -42,7 +42,7 @@ export default function Hotels() {
 
 
   return (
-    <div className='w-100 min-h flex j-evenly wrap g-3 p-5'>
+    <div className='w-100 min-h flex j-evenly wrap g-5 p-5 bg-hotel'>
         <div className='w-100'>
             <form className='w-100 flex j-evenly mb-3 '>
                 <input className='search-input' placeholder='Buscar...' onChange={inputs} type='text'/>

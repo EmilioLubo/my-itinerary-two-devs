@@ -40,9 +40,9 @@ export const Cities = () => {
     }
     console.log(searched)
     return (
-        <>
+        <div className='bg-city'>
             <div>
-                <div className='flex j-evenly mt-2'>
+                <div className='flex j-evenly  pt-2'>
                     {
                         Array.from(new Set(checkCities.map(city => city.continent))).map(el => {
                             return (
@@ -64,6 +64,6 @@ export const Cities = () => {
                     <h2>No matches in your search</h2>
                 }
             </div>
-        </>
+        </div>
       )
 }

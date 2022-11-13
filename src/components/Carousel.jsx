@@ -23,8 +23,6 @@ export default function Carousel() {
         setId(dato);
     };
 
-
-    
     const dato2 = async (num) => {
         let res = await axios.get(`${apiUrl}/cities`);
         res = res.data.response;
@@ -35,7 +33,6 @@ export default function Carousel() {
     const dato1 = async (num) => {
         let res = await axios.get(`${apiUrl}/hotels`);
         res = res.data.response;
-        console.log(res)
         res = res.slice(0, 6);
         res = res[num];
         setData1(res);
