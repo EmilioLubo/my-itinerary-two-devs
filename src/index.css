@@ -189,6 +189,9 @@ a{
 .fs-2{
   font-size: .8em;
 }
+.fw{
+  font-weight: 700;
+}
 .fs-3{
   font-size: 1.5em;
 }
