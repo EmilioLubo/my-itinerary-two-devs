@@ -24,15 +24,23 @@ export default function NewHotel() {
     }
 
   return (
-    <div className='w-100 h-75 flex f-column g-3 new-div'>
+    <div className='w-100 h-75 flex f-column g-3 new-div form-log'>
         <h1 className="text-center">New Hotel</h1>
-        <form className='new-form flex f-column g-1 p-5 fs-3' onSubmit={submit}>
-            <input className="fs-2" type="text" name='name' placeholder='Enter Hotel name...' required/>
-            <input className="fs-2" type="number" name="population" min={1} placeholder='Enter Hotel capacity...' required/>
-            <input className="fs-2" type='url' name="photo" placeholder='Enter 3 Hotel URLs image'/>
-            <div className='new-buttons flex j-between'>
-                <input className='w-50 fs-2' type="reset" value="Clear Form" />
-                <input className='w-50 fs-2' type="submit" value="Submit" />
+        <form className='new-form flex f-column g-1  fs-3 fw' onSubmit={submit}>
+            <label className='inputs flex f-column '>
+            <legend>Hotel name</legend>
+            <input className="fs-2 " type="text" name='name' placeholder='Enter Hotel name...' required/></label>
+            <label className='inputs flex f-column'>
+            <legend>Hotel capacity</legend>
+            <input className="fs-2 " type="number" name="population" min={1} placeholder='Enter Hotel capacity...' required/></label>
+            <label className='inputs flex f-column'>
+            <legend>Urls photos</legend>
+                <input className="fs-2 " type='url' name="photo" placeholder='Enter 3 Hotel URLs image'/>
+            </label>
+           
+            <div className='new-buttons flex j-evenly'>
+                <input className='w-50 fs-2 btn' type="reset" value="Clear Form" />
+                <input className='w-50 fs-2 btn' type="submit" value="Submit" />
             </div>
         </form>
     </div>
