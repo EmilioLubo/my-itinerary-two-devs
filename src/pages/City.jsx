@@ -17,7 +17,7 @@ export const City = () => {
     },[])
 
   return (
-    <div className='w-100'>
+    <div className='w-100 bg-city'>
         <h1 className='text-center'>City detail</h1>
         <div>
             <Detail name={city.name} photo={city.photo} continent={city.continent} population={'Population: ' + new Intl.NumberFormat().format(city.population)}/>
