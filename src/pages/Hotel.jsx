@@ -23,7 +23,7 @@ export const Hotel = () => {
             <Detail  name={hotel.name} photo={hotel.photo} continent={'Capacity: ' + new Intl.NumberFormat().format(hotel.capacity)}   />
             <ShowsH />
         </div>
-        <div className='flex j-center mt-2 mb-2'>
+        <div className='flex j-center mt-2 pb-2'>
             <button className='btn'>Comments</button>
         </div>
     </div>

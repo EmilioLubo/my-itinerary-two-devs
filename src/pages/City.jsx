@@ -23,7 +23,7 @@ export const City = () => {
             <Detail name={city.name} photo={city.photo} continent={city.continent} population={'Population: ' + new Intl.NumberFormat().format(city.population)}/>
             <Itinerary/>
         </div>
-        <div className='flex j-center mt-2 mb-2'>
+        <div className='flex j-center mt-2 pb-2'>
             <button className='btn'>Comments</button>
         </div>
     </div>

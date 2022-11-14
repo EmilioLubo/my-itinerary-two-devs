@@ -125,6 +125,9 @@ a{
 .pt-2{
   padding-top: 2rem;
 }
+.pb-2{
+  padding-bottom: 1rem;
+}
 .m-1{
   margin: .5rem;
 }
@@ -254,6 +257,7 @@ a{
   100%{transform: rotate(-2deg);}
 }
 .link{
+  text-align: center;
   color:var(--stronger);
   background-color: transparent;
   box-shadow: 2px 2px 2px 2px rgb(91, 85, 85);
@@ -296,7 +300,6 @@ a{
 }
 .footer{
   background-color: var(--live);
-  height: 15vh;
 }
 .card{
   background:linear-gradient(90deg,#9DFBC8,#F5F186);
@@ -468,6 +471,11 @@ hr{
 .hc-75{
   height: 75vh;
 }
+.footer-buttons{
+  display: flex;
+  gap: .5rem;
+  padding-bottom: .5rem;
+}
 .copyr{
   font-weight: 600;
 }
@@ -499,6 +507,9 @@ hr{
   .new-div{
     height: 55vh;
   }
+  .footer-buttons{
+    flex-direction: column;
+  }
 }
 @media screen and (max-width: 765px){
   .detail-img{
@@ -528,7 +539,7 @@ hr{
   .footer{
     display: flex;
     flex-direction: column;
-    height: 30vh;
+    min-height: 30vh;
   }
   .separate{
     flex-direction: column;
