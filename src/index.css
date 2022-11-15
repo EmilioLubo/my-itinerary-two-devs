@@ -122,6 +122,9 @@ a{
 .p-5{
   padding: 5rem;
 }
+.pt-1{
+  padding-top: 1rem;
+}
 .pt-2{
   padding-top: 2rem;
 }
@@ -300,6 +303,7 @@ a{
 }
 .footer{
   background-color: var(--live);
+  min-height: 15vh;
 }
 .card{
   background:linear-gradient(90deg,#9DFBC8,#F5F186);
