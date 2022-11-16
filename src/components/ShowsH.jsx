@@ -15,10 +15,6 @@ export const ShowsH = () => {
             .catch(err => err.message)
     }, [])
 
-    
-
-
-
   return (
     <div className='flex j-center wrap g-3 mt-2'>
         { activities.length > 0 ?

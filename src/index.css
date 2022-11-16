@@ -163,34 +163,13 @@ a{
 }
 .bg-grade-blue{
   background: linear-gradient(90deg, #009ffd, #045de9, #2a2a72);
-  background-size: 600% 600%;
-  animation: bg-blue 2s linear infinite;
-}
-@keyframes bg-blue{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
 }
 .bg-hotel{
   background: linear-gradient(90deg, #e7b4da, #a9a8e7, #b1eaeb);
-  background-size: 600% 600%;
-  animation: bg-hotel 2s linear infinite;
-}
-@keyframes bg-hotel{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
 }
 .bg-city{
 
   background: linear-gradient(90deg, #ebbef1, #dbb1f0, #aeebe1);
-  background-size: 600% 600%;
-  animation: bg-city 2s linear infinite;
-}
-@keyframes bg-city{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
 }
 .fs-2{
   font-size: .8em;

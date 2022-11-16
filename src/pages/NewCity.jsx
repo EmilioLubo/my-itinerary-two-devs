@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import apiUrl from "../url";
@@ -6,15 +6,18 @@ import apiUrl from "../url";
 export const NewCity = () => {
     let [selectDefault, setSelectDefault] = useState("");
     let navigate = useNavigate();
+    let formRef = useRef(null)
 
     let submit = (e) => {
         e.preventDefault();
-        let photo = e.target.photo.value || "/img/no-image.png";
+        const formData = new FormData(formRef.current)
+        const values = Object.fromEntries(formData)
+        let photo = values.photo || "/img/no-image.png";
         let newCity = {
-            name: e.target.name.value,
-            continent: e.target.continent.value,
+            name: values.name,
+            continent: values.continent,
             photo: photo,
-            population: e.target.population.value,
+            population: values.population,
             userId: "636d210297606439046194bb",
         };
         axios
@@ -32,7 +35,7 @@ export const NewCity = () => {
     return (
         <div className="w-100 h-75 flex f-column g-3 new-div  form-log">
             <h1 className="text-center">New City</h1>
-            <form className="new-form flex f-column g-1  fs-3 fw" onSubmit={submit}>
+            <form className="new-form flex f-column g-1  fs-3 fw" onSubmit={submit} ref={formRef}>
                 <label className="inputs flex f-column">
                     <legend>City name</legend>
                     <input className="fs-2" type="text" name="name" placeholder="Enter city name..." required />

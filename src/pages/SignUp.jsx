@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {Link} from 'react-router-dom'
 
 export const SignUp = () => {
 
     let [user, setUser] = useState([])
+    let formRef = useRef(null)
     let navigate = useNavigate()
 
     useEffect(() => {
@@ -12,19 +13,21 @@ export const SignUp = () => {
             .then(res => res.json())
             .then(data => setUser(data.users))
             .catch(err => console.log(err.message))
-    })
+    },[])
 
     let submit = (e) => {
         e.preventDefault()
-        if(e.target.password.value !== e.target.confirmPassword.value){
+        const formData = new FormData(formRef.current)
+        const values = Object.fromEntries(formData)
+        if(values.password !== values.confirmPassword){
             e.target.confirmPassword.focus()
         } else{
             let newUser = {
-                name: e.target.fName.value,
-                lastName: e.target.lName.value,
-                age: e.target.age.value,
-                email: e.target.email.value,
-                password: e.target.password.value,
+                name: values.fName,
+                lastName: values.lName,
+                age: values.age,
+                email: values.email,
+                password: values.password,
             }
             let userRef = user.find(el => el.name.toUpperCase() === newUser.name.toUpperCase() && el.lastName.toUpperCase() === newUser.lastName.toUpperCase())
             userRef ? navigate('/login') : localStorage.setItem('new user', JSON.stringify(newUser))
@@ -33,7 +36,7 @@ export const SignUp = () => {
     }
 
   return (
-        <form className='form-log flex f-column align-center j-evenly w-100 h-75' onSubmit={submit}>
+        <form className='form-log flex f-column align-center j-evenly w-100 h-75' onSubmit={submit} ref={formRef}>
             <h1 className="text-center">Sign up</h1>
             <div className='inputs j-center f-column'>
                 <input className="fs-2" type="text" name='fName' placeholder='Enter your name...' required/>
