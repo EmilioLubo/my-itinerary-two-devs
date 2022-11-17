@@ -1,49 +1,62 @@
 import React,{useState,useEffect} from 'react'
 import CardHotel from '../components/CardHotel'
+import axios from 'axios'
+import apiUrl from '../url'
 
 export default function Hotels() {
     let [data,setData]= useState([])
-    let [selectDefault, setSelectDefault] = useState('')
+    let [selectDefault,setSelectDefault]=useState('')
+    let [searched, setSearched] = useState('')
 
 
-    const dato = async()=>{
-        let res = await fetch('/data/hotels.json')
-        res = await res.json()
-        res = res.hotels
-        setData(res)
-    }
+
 
     useEffect(()=>{
-        dato()
+        axios.get(`${apiUrl}/hotels`)
+            .then(res => setData(res.data.response))
+            .catch(err => console.log(err.message))
     },[])
+
+    useEffect(()=>{
+
+        // eslint-disable-next-line
+        if(selectDefault == 0){
+            axios.get(`${apiUrl}/hotels?name=${searched}`)
+        .then(res => setData(res.data.response))
+        .catch(err => console.log(err.message))
+        }else{
+            axios.get(`${apiUrl}/hotels?name=${searched}&order=${selectDefault}`)
+        .then(res => setData(res.data.response))
+        .catch(err => console.log(err.message))
+        }
+    },[searched,selectDefault])
 
     let hand = (e) => {
         setSelectDefault(e.target.value)
-        console.log(e.target.value)
     }
 
     let inputs =(e)=>{
-        // eslint-disable-next-line 
-        let valor = [e.target.value]
-        console.log(valor)
+        setSearched(e.target.value.trim())
     }
 
 
 
   return (
-    <div className='w-100 min-h flex j-evenly wrap g-3 p-5'>
+    <div className='w-100 min-h flex j-evenly wrap g-5 p-5 bg-hotel'>
         <div className='w-100'>
             <form className='w-100 flex j-evenly mb-3 '>
-                <input placeholder='Buscar...' onChange={inputs}/>
-                <select  name='Select' value={selectDefault} onChange={hand} >
-                    <option>Select</option>
-                    <option value='top' >Ascend</option>
-                    <option value='down'>Descend</option>
+                <input className='search-input' placeholder='Buscar...' onChange={inputs} type='text'/>
+                <select className='search-input' name='Select' value={selectDefault} onChange={hand} >
+                    <option value='0'>Select</option>
+                    <option value='1' >Ascend</option>
+                    <option value='-1'>Descend</option>
                 </select>
             </form>
         </div>
         {
-            data.map(item=> <CardHotel name={item.name} photo={item.photo} key={item.id} id={item.id} description={item.capacity}/>)
+            data.length > 0 ?
+            data.map(item=> <CardHotel name={item.name} photo={item.photo} key={item._id} id={item._id} description={item.capacity}/>):
+            <h2 className='min-h-50'>Hotels not found</h2>
         }
     </div>
   )

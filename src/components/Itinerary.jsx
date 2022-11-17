@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { Activity } from './Activity'
+import axios from 'axios'
+import apiUrl from '../url'
+import { useParams } from 'react-router-dom'
 
-export const Itinerary = ({id}) => {
+export const Itinerary = () => {
 
     let [activities, setActivities] = useState([])
     let [count, setCount] = useState(0)
+    let {id} = useParams()
 
     useEffect(() => {
-        fetch('/data/activities.json')
-            .then(res => res.json())
-            .then(data => setActivities(data.activities.filter(el => el.cityId === parseInt(id))))
-    })
+        axios.get(`${apiUrl}/itineraries?cityId=${id}`)
+            .then(res => setActivities(res.data.response))
+            .catch(err => err.message)
+    }, [])
 
     useEffect(() => {
         let interval = setInterval(() => {
@@ -23,8 +27,9 @@ export const Itinerary = ({id}) => {
 
   return (
     <div className='flex j-center wrap g-3 mt-2'>
-        {
-        activities.map(el => <Activity key={el.id} name={el.name} photo={el.photo[count]} description={el.description} duration={'Duration: ' + el.duration + ' hs.'} price={el.price}/>)
+        {activities.length > 0 ?
+        activities.map(el => <Activity key={el._id} name={el.name} photo={el.photo[count]} description={el.description} duration={'Duration: ' + el.duration + ' hs.'} price={el.price}/>) :
+        <h2>No itineraries yet</h2>
     }
     </div>
   )

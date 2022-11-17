@@ -1,19 +1,29 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Card from '../components/Card'
+import apiUrl from '../url'
 
 export const Cities = () => {
 
+    let [checkCities, setCheckCities] = useState([])
     let [cities, setCities] = useState([])
     let [checked, setChecked] = useState([])
-    // eslint-disable-next-line
-    let [searched, setSearched] = useState()
+    let [searched, setSearched] = useState('')
 
     useEffect(() => {
-        fetch('/data/cities.json')
-            .then(res => res.json())
-            .then(data => setCities(data.cities))
+        axios.get(`${apiUrl}/cities`)
+            .then(res => setCheckCities(res.data.response))
             .catch(err => console.log(err.message))
-    })
+    }, [])
+    useEffect(() => {
+        let checkQuery = checked.slice()
+        if(checked.length > 0){
+            checkQuery = checked.join('&continent=')
+        }
+        axios.get(`${apiUrl}/cities?name=${searched}&continent=${checkQuery}`)
+            .then(res => setCities(res.data.response))
+            .catch(err => console.log(err.message))
+    }, [searched, checked])
 
     let checkHandler = (e) => {
         let auxArray = [...checked]
@@ -23,19 +33,18 @@ export const Cities = () => {
             auxArray = auxArray.filter(el => el !== e.target.value)
         }
         setChecked(auxArray)
-        console.log(auxArray);
     }
     let inputHandler = (e) => {
-        setSearched(e.target.value)
-        console.log(e.target.value)
+        setSearched(e.target.value.trim())
+        
     }
-
+    console.log(searched)
     return (
-        <>
+        <div className='bg-city'>
             <div>
-                <div className='flex j-evenly mt-2'>
+                <div className='flex j-evenly  pt-2'>
                     {
-                        Array.from(new Set(cities.map(city => city.continent))).map(el => {
+                        Array.from(new Set(checkCities.map(city => city.continent))).map(el => {
                             return (
                                         <label className='check-label' key={el}>
                                             <input onClick={checkHandler} type='checkbox' value={el} /> {el}
@@ -50,9 +59,11 @@ export const Cities = () => {
             </div>
             <div className='w-100 min-h flex j-evenly wrap g-5 p-5'>
                 {
-                    cities.map(item=> <Card name={item.name} id={item.id} photo={item.photo} key={item.id} description={item.continent}/>)
+                    cities.length > 0 ?
+                    cities.map(item=> <Card name={item.name} id={item._id} photo={item.photo} key={item._id} description={item.continent}/>) :
+                    <h2>No matches in your search</h2>
                 }
             </div>
-        </>
+        </div>
       )
 }

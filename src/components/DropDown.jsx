@@ -36,6 +36,8 @@ export const DropDown = () => {
                     <li><Link className='nav-link' to='/'>Home</Link></li>
                     <li><Link className='nav-link' to="/cities">Cities</Link></li>
                     <li><Link className='nav-link'to='/Hotels'>Hotels</Link></li>
+                    <li><Link className='nav-link' to='/newcity'>Add new city</Link></li>
+                    <li><Link className='nav-link' to='/newhotel'>Add new hotel</Link></li>
                 </ul>
             </div>
   )
