@@ -2,20 +2,33 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Card from '../components/Card'
 import apiUrl from '../url'
+import {useDispatch, useSelector} from 'react-redux'
+import citiesActions from '../redux/actions/citiesActions'
 
 export const Cities = () => {
 
     let [checkCities, setCheckCities] = useState([])
-    let [cities, setCities] = useState([])
+    let searchRef = useRef()
+    let 
     let [checked, setChecked] = useState([])
     let [searched, setSearched] = useState('')
+    const dispatch = useDispatch()
+    const {getCities} = citiesActions
+    const {cities} = useSelector(state => state.citiesReducer)
+
 
     useEffect(() => {
         axios.get(`${apiUrl}/cities`)
             .then(res => setCheckCities(res.data.response))
             .catch(err => console.log(err.message))
     }, [])
+
     useEffect(() => {
+        if(cities.length < 1){
+            dispatch(getCities())
+        }
+    }, [])
+/*     useEffect(() => {
         let checkQuery = checked.slice()
         if(checked.length > 0){
             checkQuery = checked.join('&continent=')
@@ -24,8 +37,8 @@ export const Cities = () => {
             .then(res => setCities(res.data.response))
             .catch(err => console.log(err.message))
     }, [searched, checked])
-
-    let checkHandler = (e) => {
+ */
+     let checkHandler = (e) => {
         let auxArray = [...checked]
         if(e.target.checked){
             auxArray.push(e.target.value)
@@ -37,8 +50,8 @@ export const Cities = () => {
     let inputHandler = (e) => {
         setSearched(e.target.value.trim())
         
-    }
-    console.log(searched)
+    } 
+
     return (
         <div className='bg-city'>
             <div>
