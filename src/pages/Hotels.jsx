@@ -1,33 +1,29 @@
 import React,{useState,useEffect} from 'react'
 import CardHotel from '../components/CardHotel'
-import axios from 'axios'
-import apiUrl from '../url'
+import { useSelector, useDispatch } from 'react-redux'
+import hotelsActions from '../redux/actions/hotelsAction'
+
 
 export default function Hotels() {
-    let [data,setData]= useState([])
-    let [selectDefault,setSelectDefault]=useState('')
+    let [selectDefault,setSelectDefault]= useState('')
     let [searched, setSearched] = useState('')
-
-
-
+    const hotels = useSelector(store=>store.hotelReducer.hotel)
+    let dispatch = useDispatch()
 
     useEffect(()=>{
-        axios.get(`${apiUrl}/hotels`)
-            .then(res => setData(res.data.response))
-            .catch(err => console.log(err.message))
+        dispatch(hotelsActions.getHotels())
     },[])
 
     useEffect(()=>{
-
         // eslint-disable-next-line
         if(selectDefault == 0){
-            axios.get(`${apiUrl}/hotels?name=${searched}`)
-        .then(res => setData(res.data.response))
-        .catch(err => console.log(err.message))
+            dispatch(hotelsActions.getHotelsByName(searched))
         }else{
-            axios.get(`${apiUrl}/hotels?name=${searched}&order=${selectDefault}`)
-        .then(res => setData(res.data.response))
-        .catch(err => console.log(err.message))
+            let filter = {
+                name:searched,
+                order:selectDefault
+            }
+        dispatch(hotelsActions.getHotelByFilter(filter))
         }
     },[searched,selectDefault])
 
@@ -39,9 +35,7 @@ export default function Hotels() {
         setSearched(e.target.value.trim())
     }
 
-
-
-  return (
+    return (
     <div className='w-100 min-h flex j-evenly wrap g-5 p-5 bg-hotel'>
         <div className='w-100'>
             <form className='w-100 flex j-evenly mb-3 '>
@@ -54,10 +48,10 @@ export default function Hotels() {
             </form>
         </div>
         {
-            data.length > 0 ?
-            data.map(item=> <CardHotel name={item.name} photo={item.photo} key={item._id} id={item._id} description={item.capacity}/>):
+            hotels.length > 0 ?
+            hotels.map(item=> <CardHotel name={item.name} photo={item.photo} key={item._id} id={item._id} description={item.capacity}/>):
             <h2 className='min-h-50'>Hotels not found</h2>
         }
     </div>
-  )
+    )
 }
