@@ -14,8 +14,23 @@ const getCities = createAsyncThunk('getCities', async() => {
         }
     }
 })
+const getFilteredCities = createAsyncThunk('getFilteredCities', async(filter) => {
+    try {
+        let searchQuery = filter.name
+        let checkQuery = filter.continent.join('&continent=')
+        const res = await axios.get(`${apiUrl}/cities?name=${searchQuery}&continent=${checkQuery}`)
+        return {
+            cities: res.data.response
+        }
+    } catch (error) {
+        return {
+            error: 'Error'
+        }
+    }
+})
 const citiesActions = {
-    getCities
+    getCities,
+    getFilteredCities
 }
 
 export default citiesActions

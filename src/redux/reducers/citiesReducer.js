@@ -1,7 +1,7 @@
 import {createReducer} from '@reduxjs/toolkit'
 import citiesActions from '../actions/citiesActions'
 
-const {getCities} = citiesActions
+const {getCities, getFilteredCities} = citiesActions
 const initialState = {
     cities: [],
     load: false,
@@ -26,6 +26,28 @@ const citiesReducer = createReducer(initialState, (builder) => {
             }
         })
         .addCase(getCities.rejected, (state, action) => {
+            return {
+                ...state,
+                load: false,
+                error: true, 
+            }
+        })
+        .addCase(getFilteredCities.pending, (state, action) => {
+            return {
+                ...state,
+                load: true,
+                error: false, 
+            }
+        })
+        .addCase(getFilteredCities.fulfilled, (state, action) => {
+            return {
+                ...state,
+                load: false,
+                error: false,
+                ...action.payload
+            }
+        })
+        .addCase(getFilteredCities.rejected, (state, action) => {
             return {
                 ...state,
                 load: false,
