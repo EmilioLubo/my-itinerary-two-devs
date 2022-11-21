@@ -5,6 +5,9 @@ import apiUrl from '../url'
 import {useDispatch, useSelector} from 'react-redux'
 import citiesActions from '../redux/actions/citiesActions'
 import filterCitiesActions from '../redux/actions/filterCitiesActions.js'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export const Cities = () => {
 
@@ -15,11 +18,14 @@ export const Cities = () => {
     const filter = useSelector(state => state.filterCitiesReducer)
     const {getCities, getFilteredCities} = citiesActions
     const {cities} = useSelector(state => state.citiesReducer)
+    const notify = () => toast('hola')
 
     useEffect(() => {
         axios.get(`${apiUrl}/cities`)
             .then(res => setCheckCities(res.data.response))
             .catch(err => console.log(err.message))
+
+            notify()
     }, [])
 
     useEffect(() => {
@@ -52,6 +58,7 @@ export const Cities = () => {
 
     return (
         <div className='bg-city'>
+            <ToastContainer position='top-right'/>
             <div>
                 <div className='flex j-evenly  pt-2'>
                     {
