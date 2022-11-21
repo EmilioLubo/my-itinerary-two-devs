@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import swal from 'sweetalert'
 
 export default function NewHotel() {
     let navigate = useNavigate()
@@ -19,7 +20,17 @@ export default function NewHotel() {
         axios.post('http://localhost:8080/api/hotels', newhotel)
             .then(res => {
                 console.log(res.data)
-                navigate('/hotels')
+                if(res.data.success){
+                    swal("creado")
+                    navigate('/hotels')
+                }else{
+                    swal({
+                        title:"faltan",
+                        text:"llena los campos",
+                        icon:"warnig"
+                    })
+                }
+                
             })
     }
 
@@ -29,10 +40,10 @@ export default function NewHotel() {
         <form className='new-form flex f-column g-1  fs-3 fw' onSubmit={submit}>
             <label className='inputs flex f-column '>
             <legend>Hotel name</legend>
-            <input className="fs-2 " type="text" name='name' placeholder='Enter Hotel name...' required/></label>
+            <input className="fs-2 " type="text" name='name' min='3' placeholder='Enter Hotel name...' required/></label>
             <label className='inputs flex f-column'>
             <legend>Hotel capacity</legend>
-            <input className="fs-2 " type="number" name="population" min={1} placeholder='Enter Hotel capacity...' required/></label>
+            <input className="fs-2 " type="number" name="population" min='1' placeholder='Enter Hotel capacity...' required/></label>
             <label className='inputs flex f-column'>
             <legend>Urls photos</legend>
                 <input className="fs-2 " type='url' name="photo" placeholder='Enter 3 Hotel URLs image'/>
