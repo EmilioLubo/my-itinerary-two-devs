@@ -2,9 +2,23 @@ import React from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import swal from 'sweetalert'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function NewHotel() {
     let navigate = useNavigate()
+    let notify = (text)=>{
+        toast.warn(text, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+    }
 
     let submit = (e) =>{
         e.preventDefault()
@@ -19,23 +33,29 @@ export default function NewHotel() {
         }
         axios.post('http://localhost:8080/api/hotels', newhotel)
             .then(res => {
-                console.log(res.data)
                 if(res.data.success){
-                    swal("creado")
-                    navigate('/hotels')
-                }else{
+                    let id = res.data.response._id
                     swal({
-                        title:"faltan",
-                        text:"llena los campos",
-                        icon:"warnig"
+                        title:'success',
+                        text:'The Hotel Was Created',
+                        icon:'success',
                     })
+                    
+                    navigate(`/hotels/${id}`)
+                }else{
+                    let error = res.data.message[0].message
+                    let error1= res.data.message[1].message
+                    notify(error)
+                    notify(error1)
                 }
                 
             })
     }
 
+
   return (
     <div className='w-100 h-75 flex f-column g-3 new-div form-log'>
+
         <h1 className="text-center">New Hotel</h1>
         <form className='new-form flex f-column g-1  fs-3 fw' onSubmit={submit}>
             <label className='inputs flex f-column '>
@@ -48,12 +68,12 @@ export default function NewHotel() {
             <legend>Urls photos</legend>
                 <input className="fs-2 " type='url' name="photo" placeholder='Enter 3 Hotel URLs image'/>
             </label>
-           
             <div className='new-buttons flex j-evenly'>
                 <input className='w-50 fs-2 btn' type="reset" value="Clear Form" />
                 <input className='w-50 fs-2 btn' type="submit" value="Submit" />
             </div>
         </form>
+        <ToastContainer/>
     </div>
   )
 }
