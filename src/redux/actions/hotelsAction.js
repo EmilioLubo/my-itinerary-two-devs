@@ -3,24 +3,24 @@ import axios from "axios";
 import apiUrl from '../../url'
 
 let getHotels = createAsyncThunk('getHotels',async()=>{
-    let data = await axios.get(`${apiUrl}/hotels`)
+    let res = await axios.get(`${apiUrl}/hotels`)
     return{
-        hotels:data.data.response
+        hotels:res.data.response
     }
 })
 
 let getHotelsByName = createAsyncThunk('getHotelsByName',async(name)=>{
-    let data = await axios.get(`${apiUrl}/hotels?name=${name}`)
+    let res = await axios.get(`${apiUrl}/hotels?name=${name}`)
     return{
-        hotels:data.data.response
+        hotels:res.data.response
     }
     
 })
 
 let getHotelByFilter = createAsyncThunk('getHotelByFilter',async(filter)=>{
-    let data = await axios.get(`${apiUrl}/hotels?name=${filter.name}&order=${filter.order}`)
+    let res = await axios.get(`${apiUrl}/hotels?name=${filter.name}&order=${filter.order}`)
     return{
-        hotels:data.data.response
+        hotels:res.data.response
     }
 })
 
