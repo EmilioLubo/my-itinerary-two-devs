@@ -12,6 +12,7 @@ export const Hotel = () => {
     let {id} = useParams()
 
     useEffect(() => {
+        console.log(hotel);
         axios.get(`${apiUrl}/hotels/${id}`)
             .then(res => setHotel(res.data.response))
             .catch(err => err.message)

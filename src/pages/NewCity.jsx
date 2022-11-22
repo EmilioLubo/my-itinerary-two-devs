@@ -2,30 +2,11 @@ import React, { useState, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import apiUrl from "../url";
-import swal from 'sweetalert'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 
 export const NewCity = () => {
     let [selectDefault, setSelectDefault] = useState("");
     let navigate = useNavigate();
     let formRef = useRef(null)
-    let selectRef = useRef(null)
-
-    let notify = (text)=>{
-        toast.warn(text, {
-            position: "top-center",
-            className: "black-background",
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            });
-    }
 
     let submit = (e) => {
         e.preventDefault();
@@ -42,31 +23,13 @@ export const NewCity = () => {
         axios
             .post(`${apiUrl}/cities`, newCity)
             .then((res) => {
-                if(res.data.success){
-                    let id = res.data.id
-                    swal({
-                        title:'success',
-                        text:res.data.message,
-                        icon:'success',
-                    })
-                    navigate(`/cities/${id}`)
-                }else{
-                    let error = res.data.message[0]
-                    let error1= res.data.message[1]
-                    notify(error)
-                    notify(error1)
-                }
+                console.log(res.data);
+                navigate("/cities");
             })
-            .catch((err) => {
-                swal({
-                    title:'Error',
-                    text: err.response.data.message,
-                    icon:'error',
-            })
-        })
+            .catch((err) => console.log(err.message));
     };
     let handleSelect = (e) => {
-        setSelectDefault(selectRef.current.value);
+        setSelectDefault(e.target.value);
     };
 
     return (
@@ -79,7 +42,7 @@ export const NewCity = () => {
                 </label>
                 <label className="inputs flex f-column">
                     <legend>Choose continent</legend>
-                    <select className="fs-2" name="continent" value={selectDefault} onChange={handleSelect} ref={selectRef} required>
+                    <select className="fs-2" name="continent" value={selectDefault} onChange={handleSelect} required>
                         <option disabled value={""}>
                             Select a continent
                         </option>
@@ -105,7 +68,6 @@ export const NewCity = () => {
                     <input className="w-50 fs-2 btn" type="submit" value="Submit" />
                 </div>
             </form>
-            <ToastContainer/>
         </div>
     );
 };

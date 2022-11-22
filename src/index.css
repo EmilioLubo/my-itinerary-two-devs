@@ -155,9 +155,6 @@ a{
 .w-50{
   width: 50%;
 }
-.w-75{
-  width: 75%;
-}
 .w-100{
   width: 100%;
 }
@@ -177,14 +174,8 @@ a{
 .fs-2{
   font-size: .8em;
 }
-.rojo{
-  color:red;
-}
 .fw{
   font-weight: 700;
-}
-.fw-1{
-  font-weight: 400;
 }
 .fs-3{
   font-size: 1.5em;
@@ -260,11 +251,6 @@ a{
   transition: all 1s;
   background-color: #fff;
 }
-.edit{
-  background-color: #fff;
-  padding: .5rem;
-  border-radius: 10px;
-}
 .icon:hover{
   background-color: transparent;
   box-shadow: 2px 2px 2px 2px var(--lighter);
@@ -306,9 +292,7 @@ a{
 .min-h-50{
   height: 27.8vh;
 }
-.min-h-edit{
-  min-height: 70vh;
-}
+
 .row{
   width: 5%;
   min-height: 15rem;
@@ -396,16 +380,6 @@ hr{
   justify-content: space-between;
   width: 18rem;
   height: 24rem;
-  margin: 0.5rem 0 1.5rem 0;
-  box-shadow: 5px 5px 10px 10px rgb(101, 97, 97);
-}
-.card2{
-  display: flex;
-  background-color: #fff;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 20rem;
-  min-height: 24rem;
   margin: 0.5rem 0 1.5rem 0;
   box-shadow: 5px 5px 10px 10px rgb(101, 97, 97);
 }
