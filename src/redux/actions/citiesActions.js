@@ -28,9 +28,35 @@ const getFilteredCities = createAsyncThunk('getFilteredCities', async(filter) =>
         }
     }
 })
+const getUserCities = createAsyncThunk('getUserCities', async(userId) => {
+    try {
+        let res = axios.get(`${apiUrl}/cities?userId=${userId}`)
+        return{
+            userCities: (await res).data.response
+        }
+    } catch (error) {
+        return{
+            error: 'Error'
+        }
+    }
+})
+const deleteCity = createAsyncThunk('deleteCity', async(cityId) => {
+    try {
+        const res = await axios.delete(`${apiUrl}/cities/${cityId}`)
+        return{
+            _id: res.data.respnse._id
+        }
+    } catch (error) {
+        return {
+            error: 'Error'
+        }
+    }
+})
 const citiesActions = {
     getCities,
-    getFilteredCities
+    getFilteredCities,
+    getUserCities,
+    deleteCity
 }
 
 export default citiesActions

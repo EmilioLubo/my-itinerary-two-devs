@@ -303,7 +303,9 @@ a{
 .min-h-50{
   height: 27.8vh;
 }
-
+.min-h-edit{
+  min-height: 70vh;
+}
 .row{
   width: 5%;
   min-height: 15rem;
