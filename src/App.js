@@ -15,6 +15,8 @@ import MyHotels from "./pages/MyHotels";
 import { MyCities } from "./pages/MyCities";
 import { CityEdit } from "./pages/CityEdit";
 import MyShows from "./pages/MyShows";
+import { MyItineraries } from "./pages/MyItineraries";
+import { ItineraryEdit } from "./pages/ItineraryEdit";
 
 function App() {
   return (
@@ -28,11 +30,13 @@ function App() {
       <Route path="/cities/:id" element={<City/>}/>
       <Route path="/mycities" element={<MyCities/>} />
       <Route path="/myhotels" element={<MyHotels/>}/>
+      <Route path="/myitineraries" element={<MyItineraries/>}/>
       <Route path="/myshows" element={<MyShows/>}/>
       <Route path="/newcity" element={<NewCity/>}/>
       <Route path="/newhotel" element={<NewHotel/>}/>
       <Route path="/Hotels/:id" element={<Hotel/>}/>
       <Route path="/editcity/:id" element={<CityEdit/>}/>
+      <Route path="/edititinerary/:id" element={<ItineraryEdit/>}/>
       <Route path="*" element={<NotFoundPage/>}></Route>
     </Routes>
   </Layout>  
