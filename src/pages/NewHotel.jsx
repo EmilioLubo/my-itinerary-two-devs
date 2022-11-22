@@ -47,10 +47,8 @@ export default function NewHotel() {
                     }) 
                     navigate(`/hotels/${id}`)
                 }else{
-                    let error = res.data.message[0]
-                    let error1= res.data.message[1]
-                    notify(error)
-                    notify(error1)
+                    let error = res.data.message
+                    error.forEach(item=>notify(item.message))
                 }
             })
             .catch((err) => {
