@@ -85,8 +85,7 @@ export const ItineraryEdit = () => {
                     })
                     navigate('/myitineraries')
                 }else{
-                    let error = res.data.message[0].message
-                    notify(error)
+                    res.data.message.forEach(el=> notify(el.message))
                 }
             })
             .catch((err) => {

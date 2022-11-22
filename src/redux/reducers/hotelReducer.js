@@ -3,6 +3,7 @@ import hotelsActions from "../actions/hotelsAction";
 
 const initialState = {
     hotels:[],
+    userHotels:[],
     load: false,
     error: false
 }
@@ -34,6 +35,17 @@ const hotelReducer = createReducer(initialState,(hotel)=>{
     })
     hotel.addCase(hotelsActions.getHotelByFilter.rejected,(state,action)=>{
         return {...state, load: false, error: true}
+    })
+    hotel.addCase(hotelsActions.deleteHotel.fulfilled,(state,action)=>{
+        return { ...state,
+            load: false,
+            error: false,
+            hotels: state.hotels.filter(el => el._id !== action.payload._id),
+            userHotels: state.userHotels.filter(el => el._id !== action.payload._id)
+        }
+    })
+    hotel.addCase(hotelsActions.getHotelsUser.fulfilled,(state,action)=>{
+        return {...state,load: false,error: false,...action.payload}
     })
 })
 
