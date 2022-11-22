@@ -16,6 +16,8 @@ export const Cities = () => {
     const {getCities, getFilteredCities} = citiesActions
     const {cities} = useSelector(state => state.citiesReducer)
 
+
+    
     useEffect(() => {
         axios.get(`${apiUrl}/cities`)
             .then(res => setCheckCities(res.data.response))
