@@ -180,6 +180,9 @@ a{
 .fw{
   font-weight: 700;
 }
+.fw-1{
+  font-weight: 400;
+}
 .fs-3{
   font-size: 1.5em;
 }
@@ -253,6 +256,11 @@ a{
 .link:hover{
   transition: all 1s;
   background-color: #fff;
+}
+.edit{
+  background-color: #fff;
+  padding: .5rem;
+  border-radius: 10px;
 }
 .icon:hover{
   background-color: transparent;
