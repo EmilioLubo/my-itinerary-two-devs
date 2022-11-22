@@ -44,12 +44,8 @@ export default function Edit({id}) {
                     })
                     navigate('/myshows')
                 }else{
-                    let error = res.data.message[0].message
-                    let error1= res.data.message[1].message
-                    notify(error)
-                    notify(error1)
-                }
-                
+                    let error = res.data.message
+                    error.forEach(item=>notify(item.message))}
             })
     }
 

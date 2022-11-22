@@ -35,6 +35,9 @@ const hotelReducer = createReducer(initialState,(hotel)=>{
     hotel.addCase(hotelsActions.getHotelByFilter.rejected,(state,action)=>{
         return {...state, load: false, error: true}
     })
+    hotel.addCase(hotelsActions.deleteHotel.fulfilled,(state,action)=>{
+        return {...state, load: false, error: true}
+    })
 })
 
 export default hotelReducer
