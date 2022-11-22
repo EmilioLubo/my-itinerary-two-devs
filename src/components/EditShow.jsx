@@ -3,7 +3,7 @@ import apiUrl from '../url'
 import axios from 'axios'
 import swal from 'sweetalert'
 import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -25,22 +25,24 @@ export default function Edit({id}) {
     }
     let submit = (e) =>{
         e.preventDefault()
-        let editHotel = {}
+        let editShow = {}
         let vacio={}
 
-        e.target.name.value === '' ? vacio.name = e.target.name.value : editHotel.name=e.target.name.value
-        e.target.capacity.value === '' ? vacio.capacity = e.target.capacity.value : editHotel.capacity=e.target.capacity.value
-        e.target.photo.value === '' ? vacio.photo = e.target.photo.value : editHotel.photo=e.target.photo.value
+        e.target.name.value === '' ? vacio.name = e.target.name.value : editShow.name=e.target.name.value
+        e.target.description.value === '' ? vacio.description = e.target.description.value : editShow.description=e.target.description.value
+        e.target.price.value === '' ? vacio.price = e.target.price.value : editShow.price=e.target.price.value
+        e.target.photo.value === '' ? vacio.photo = e.target.photo.value : editShow.photo=e.target.photo.value
+        e.target.date.value === '' ? vacio.date = e.target.date.value : editShow.date=e.target.date.value
         
-        axios.patch(`${apiUrl}/hotels/${id}`, editHotel)
+        axios.patch(`${apiUrl}/shows/${id}`, editShow)
             .then(res => {
                 if(res.data.success){
                     swal({
                         title:'success',
-                        text:'The Hotel Was edited',
+                        text:'The show Was edited',
                         icon:'success',
                     })
-                    navigate('/myhotels')
+                    navigate('/myshows')
                 }else{
                     let error = res.data.message[0].message
                     let error1= res.data.message[1].message
@@ -56,14 +58,22 @@ export default function Edit({id}) {
     <div className='w-100'>
         <form className='edit flex f-column align-center ' onSubmit={submit}>
             <label className='fw'>
-            <legend>Hotel name</legend>
+            <legend>Show name</legend>
             <input className='w-100' type="text" name='name' min='3' placeholder=' name...'/></label>
             <label className='fw'>
-            <legend>Hotel capacity</legend>
-            <input className='w-100' type="number" name="capacity" min='1' placeholder='capacity...'/></label>
+            <legend>Show description</legend>
+            <input className='w-100' type="text" name="description" min='1' placeholder='Description...'/></label>
             <label className='fw'>
             <legend>Urls photos</legend>
-                <input className='w-100'  type='url' name="photo" placeholder='image'/>
+                <input className='w-100'  type='url' name="photo" placeholder='image..'/>
+            </label>
+            <label className='fw'>
+            <legend>Show Date</legend>
+                <input className='w-100'  type='date' name="date" placeholder='Date..'/>
+            </label>
+            <label className='fw'>
+            <legend>Show Price</legend>
+                <input className='w-100'  type='number' name="price" placeholder='price..'/>
             </label>
             <div className='new-buttons flex j-evenly w-100 pt-1'>
                 <input className='w-100 fs-2 btn p-1' type="submit" value="Edit" />
