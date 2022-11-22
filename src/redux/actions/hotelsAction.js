@@ -54,12 +54,25 @@ let deleteHotel = createAsyncThunk('deleteHotel',async(hotelID)=>{
     }
     
 })
+let getHotelsUser = createAsyncThunk('getHotelsUser',async(hotelID)=>{
+    try{
+        const res = await axios.get(`${apiUrl}/hotels?userID=${hotelID}`)
+        return{
+            userHotels:res.data.response
+        }
+    }catch (error) {
+        return {
+            error: 'Error'
+        }
+    }
+})
 
 const hotelsActions = {
     getHotels,
     getHotelsByName,
     getHotelByFilter,
-    deleteHotel
+    deleteHotel,
+    getHotelsUser
 }
 
 export default hotelsActions

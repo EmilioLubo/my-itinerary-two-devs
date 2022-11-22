@@ -1,20 +1,19 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import apiUrl from "../url";
+import React, {  useEffect } from "react";
 import Carduser from "../components/CardUser";
 import swal from "sweetalert";
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from "react-redux";
+import hotelsActions from "../redux/actions/hotelsAction";
 
 
 export default function MyHotels() {
-    let [hotel, setHotel] = useState([]);
+
+    let {userHotels}= useSelector(state=>state.hotelReducer)
+    let dispatch = useDispatch()
+    let {getHotelsUser,deleteHotel} = hotelsActions
     let navigate = useNavigate()
     useEffect(() => {
-        console.log(hotel);
-        axios
-            .get(`${apiUrl}/myhotels?userID=636d210297606439046194ba`)
-            .then((res) => setHotel(res.data.response))
-            .catch((err) => err.message);
+        dispatch(getHotelsUser('636d210297606439046194ba'))
     }, []);
 
 let Delete = (e)=>{
@@ -31,16 +30,14 @@ let Delete = (e)=>{
         swal("!has been deleted!", {
             icon: "success",
         });
-        axios
-            .delete(`${apiUrl}/hotels/${id}`)
-            .then((res) => setHotel(res.data.response))
-            .catch((err) => err.message);
+        dispatch(deleteHotel(id))
         } else {
         swal("Your hotel is safe!");
         }
         navigate('/myhotels')
     });
 }
+console.log(userHotels)
 
 
     return (
@@ -48,7 +45,7 @@ let Delete = (e)=>{
             <div className="w-100">
                 <h1 className="text-center">My hotels</h1>
             </div>
-            {hotel.length > 0 ? hotel.map((item) => <Carduser hotel={true} name={item.name}   erase={Delete} photo={item.photo} key={item._id} id={item._id} capacity={item.capacity} />) : <h2 className="min-h-50">Hotels not found</h2>}
+            {userHotels.length > 0 ? userHotels.map((item) => <Carduser hotel={true} name={item.name}   erase={Delete} photo={item.photo} key={item._id} id={item._id} capacity={item.capacity} />) : <h2 className="min-h-50">Hotels not found</h2>}
         </div>
     );
 }

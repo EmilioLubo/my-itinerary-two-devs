@@ -8,11 +8,11 @@ const getUserItineraries = createAsyncThunk('getUserItineraries', async(userId) 
         return{
             userItineraries: (await res).data.response
         }
-    } catch (error) {
+    }catch (error) {
         return{
             error: 'Error'
         }
-    }
+    } 
 })
 const deleteItinerary = createAsyncThunk('deleteItinerary', async(itineraryId) => {
     try {

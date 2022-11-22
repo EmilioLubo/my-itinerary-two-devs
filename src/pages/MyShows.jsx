@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import apiUrl from "../url";
+import React, { useEffect } from "react";
 import Carduser from "../components/CardUser";
 import swal from "sweetalert";
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from "react-redux";
+import showsActions from "../redux/actions/showAction";
 
 
 export default function MyShows() {
-    let [show, setShow] = useState([]);
+    let {show} = useSelector(state=>state.showsReducer)
     let navigate = useNavigate()
-    useEffect(() => {
-        axios
-            .get(`${apiUrl}/shows?userID=636d210297606439046194ba`)
-            .then((res) => setShow(res.data.response))
-            .catch((err) => err.message);
-    }, []);
+    let {getShow,deleteShow}= showsActions
+    let dispatch = useDispatch()
+    
 
+    useEffect(() => {
+        dispatch(getShow('636d210297606439046194ba'))
+    }, []);
 let erase = (e)=>{
     let id = e.target.value
     
@@ -31,10 +31,7 @@ let erase = (e)=>{
         swal("!has been deleted!", {
             icon: "success",
         });
-        axios
-            .delete(`${apiUrl}/shows/${id}`)
-            .then((res) => setShow(res.data.response))
-            .catch((err) => err.message);
+        dispatch(deleteShow(id))
         } else {
         swal("Your show is safe!");
         }
