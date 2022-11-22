@@ -10,6 +10,8 @@ export const Cities = () => {
     let [checked, setChecked] = useState([])
     let [searched, setSearched] = useState('')
 
+
+    
     useEffect(() => {
         axios.get(`${apiUrl}/cities`)
             .then(res => setCheckCities(res.data.response))
