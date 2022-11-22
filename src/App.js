@@ -12,6 +12,7 @@ import { NewCity } from "./pages/NewCity";
 import { Hotel } from "./pages/Hotel";
 import NewHotel from "./pages/NewHotel";
 import MyHotels from "./pages/MyHotels";
+import MyShows from "./pages/MyShows";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <Route path="/cities" element={<Cities/>}/>
       <Route path="/cities/:id" element={<City/>}/>
       <Route path="/myhotels" element={<MyHotels/>}/>
+      <Route path="/myshows" element={<MyShows/>}/>
       <Route path="/newcity" element={<NewCity/>}/>
       <Route path="/newhotel" element={<NewHotel/>}/>
       <Route path="/Hotels/:id" element={<Hotel/>}/>
