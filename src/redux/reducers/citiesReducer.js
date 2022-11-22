@@ -1,9 +1,10 @@
 import {createReducer} from '@reduxjs/toolkit'
 import citiesActions from '../actions/citiesActions'
 
-const {getCities, getFilteredCities} = citiesActions
+const {getCities, getFilteredCities, getUserCities, deleteCity} = citiesActions
 const initialState = {
     cities: [],
+    userCities: [],
     load: false,
     error: false
 }
@@ -48,6 +49,50 @@ const citiesReducer = createReducer(initialState, (builder) => {
             }
         })
         .addCase(getFilteredCities.rejected, (state, action) => {
+            return {
+                ...state,
+                load: false,
+                error: true, 
+            }
+        })
+        .addCase(getUserCities.pending, (state, action) => {
+            return {
+                ...state,
+                load: true,
+                error: false, 
+            }
+        })
+        .addCase(getUserCities.fulfilled, (state, action) => {
+            return {
+                ...state,
+                load: false,
+                error: false,
+                ...action.payload
+            }
+        })
+        .addCase(getUserCities.rejected, (state, action) => {
+            return {
+                ...state,
+                load: false,
+                error: true, 
+            }
+        })
+        .addCase(deleteCity.pending, (state, action) => {
+            return {
+                ...state,
+                load: true,
+                error: false, 
+            }
+        })
+        .addCase(deleteCity.fulfilled, (state, action) => {
+            return {
+                ...state,
+                load: false,
+                error: false,
+                cities: state.cities.filter(el => el._id !== action.payload._id)
+            }
+        })
+        .addCase(deleteCity.rejected, (state, action) => {
             return {
                 ...state,
                 load: false,

@@ -155,6 +155,9 @@ a{
 .w-50{
   width: 50%;
 }
+.w-75{
+  width: 75%;
+}
 .w-100{
   width: 100%;
 }
@@ -303,7 +306,9 @@ a{
 .min-h-50{
   height: 27.8vh;
 }
-
+.min-h-edit{
+  min-height: 70vh;
+}
 .row{
   width: 5%;
   min-height: 15rem;
