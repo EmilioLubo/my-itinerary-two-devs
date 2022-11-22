@@ -31,11 +31,10 @@ export const NewCity = () => {
         e.preventDefault();
         const formData = new FormData(formRef.current)
         const values = Object.fromEntries(formData)
-        let photo = values.photo || "/img/no-image.png";
         let newCity = {
             name: values.name,
             continent: values.continent,
-            photo: photo,
+            photo: values.photo,
             population: values.population,
             userId: "636d210297606439046194bb",
         };
@@ -51,16 +50,13 @@ export const NewCity = () => {
                     })
                     navigate(`/cities/${id}`)
                 }else{
-                    let error = res.data.message[0]
-                    let error1= res.data.message[1]
-                    notify(error)
-                    notify(error1)
+                    res.data.message.forEach(el=> notify(el.message))
                 }
             })
             .catch((err) => {
                 swal({
                     title:'Error',
-                    text: err.response.data.message,
+                    text: err.response.message,
                     icon:'error',
             })
         })
@@ -98,7 +94,7 @@ export const NewCity = () => {
                 </label>
                 <label className="inputs flex f-column">
                     <legend>Url photo</legend>
-                    <input className="fs-2" type="url" name="photo" placeholder="Enter city URL image" />
+                    <input className="fs-2" type="url" name="photo" placeholder="Enter city URL image" required/>
                 </label>
                 <div className="new-buttons flex j-evenly">
                     <input className="w-50 fs-2 btn" type="reset" value="Clear Form" />
