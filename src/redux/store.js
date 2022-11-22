@@ -4,6 +4,7 @@ import citiesReducer from "./reducers/citiesReducer";
 import filterCitiesReducer from "./reducers/filterCitiesReducer";
 import filterHotelsReducer from "./reducers/filterHotelsReducer";
 import itinerariesReducer from "./reducers/itinerariesReducer";
+import showsReducer from "./reducers/showReducer";
 
 export const store = configureStore({
     reducer:{
@@ -11,6 +12,7 @@ export const store = configureStore({
                 citiesReducer,
                 filterCitiesReducer,
                 filterHotelsReducer,
-                itinerariesReducer
+                itinerariesReducer,
+                showsReducer
             }
 })
