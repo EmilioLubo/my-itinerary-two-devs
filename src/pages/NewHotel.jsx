@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import swal from 'sweetalert'
@@ -6,7 +6,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function NewHotel() {
+
+    let formRef = useRef(null)
     let navigate = useNavigate()
+
     let notify = (text)=>{
         toast.warn(text, {
             position: "top-center",
@@ -16,18 +19,20 @@ export default function NewHotel() {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "light",
+            theme: 'dark'
             });
     }
 
     let submit = (e) =>{
         e.preventDefault()
-        let photo = e.target.photo.value || '/img/no-image.png'
+        const formData = new FormData(formRef.current)
+        const values = Object.fromEntries(formData)
+        let photo = values.photo || '/img/no-image.png'
 
         let newhotel = {
-            name: e.target.name.value,
+            name: values.name,
             photo: photo,
-            capacity: e.target.population.value,
+            capacity: values.population,
             cityID:"636d3af27ccd7c6ea97b82e2",
             userID:"636d210297606439046194ba"
         }
@@ -37,19 +42,24 @@ export default function NewHotel() {
                     let id = res.data.response._id
                     swal({
                         title:'success',
-                        text:'The Hotel Was Created',
+                        text:res.data.message,
                         icon:'success',
-                    })
-                    
+                    }) 
                     navigate(`/hotels/${id}`)
                 }else{
-                    let error = res.data.message[0].message
-                    let error1= res.data.message[1].message
+                    let error = res.data.message[0]
+                    let error1= res.data.message[1]
                     notify(error)
                     notify(error1)
                 }
-                
             })
+            .catch((err) => {
+                swal({
+                    title:'Error',
+                    text: err.response.data.message,
+                    icon:'error',
+            })
+        })
     }
 
 
@@ -57,7 +67,7 @@ export default function NewHotel() {
     <div className='w-100 h-75 flex f-column g-3 new-div form-log'>
 
         <h1 className="text-center">New Hotel</h1>
-        <form className='new-form flex f-column g-1  fs-3 fw' onSubmit={submit}>
+        <form className='new-form flex f-column g-1 fs-3 fw' ref={formRef} onSubmit={submit}>
             <label className='inputs flex f-column '>
             <legend>Hotel name</legend>
             <input className="fs-2 " type="text" name='name' min='3' placeholder='Enter Hotel name...' required/></label>

@@ -1,13 +1,13 @@
 import {createAction} from '@reduxjs/toolkit'
 
-const setChecked = createAction('getChecked', (checked) => {
+const setChecked = createAction('setChecked', (checked) => {
     return {
         payload:{
             continent: checked
         }
     }
 })
-const setSearched = createAction('getSearched', (searched) => {
+const setSearched = createAction('setSearched', (searched) => {
     return {
         payload:{
             name: searched
