@@ -58,7 +58,7 @@ export const Cities = () => {
                         Array.from(new Set(checkCities.map(city => city.continent))).map(el => {
                             return (
                                         <label className='check-label' key={el}>
-                                            <input checked={filter.continent.includes(el) ? true : false} onClick={checkHandler} type='checkbox' value={el} /> {el}
+                                            <input checked={filter.continent.includes(el) ? true : false} onChange={checkHandler} type='checkbox' value={el} /> {el}
                                         </label>
                                     )
                         })
