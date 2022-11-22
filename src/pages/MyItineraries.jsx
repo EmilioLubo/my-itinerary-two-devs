@@ -11,7 +11,7 @@ export const MyItineraries = () => {
 
     useEffect(() => {
         dispatch(getUserItineraries("636d210297606439046194bb"))
-    }, [userItineraries])
+    }, [])
 
   return (
     <div className="w-100 min-h flex j-evenly wrap g-5 p-5 bg-hotel">

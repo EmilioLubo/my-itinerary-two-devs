@@ -44,7 +44,7 @@ const deleteCity = createAsyncThunk('deleteCity', async(cityId) => {
     try {
         const res = await axios.delete(`${apiUrl}/cities/${cityId}`)
         return{
-            _id: res.data.respnse._id
+            _id: res.data.response._id
         }
     } catch (error) {
         return {

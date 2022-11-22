@@ -89,7 +89,8 @@ const citiesReducer = createReducer(initialState, (builder) => {
                 ...state,
                 load: false,
                 error: false,
-                cities: state.cities.filter(el => el._id !== action.payload._id)
+                cities: state.cities.filter(el => el._id !== action.payload._id),
+                userCities: state.userCities.filter(el => el._id !== action.payload._id)
             }
         })
         .addCase(deleteCity.rejected, (state, action) => {
