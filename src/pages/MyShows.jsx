@@ -6,19 +6,19 @@ import swal from "sweetalert";
 import { useNavigate } from 'react-router-dom'
 
 
-export default function MyHotels() {
-    let [hotel, setHotel] = useState([]);
+export default function MyShows() {
+    let [show, setShow] = useState([]);
     let navigate = useNavigate()
     useEffect(() => {
-        console.log(hotel);
         axios
-            .get(`${apiUrl}/myhotels?userID=636d210297606439046194ba`)
-            .then((res) => setHotel(res.data.response))
+            .get(`${apiUrl}/shows?userID=636d210297606439046194ba`)
+            .then((res) => setShow(res.data.response))
             .catch((err) => err.message);
     }, []);
 
-let Delete = (e)=>{
+let erase = (e)=>{
     let id = e.target.value
+    
     swal({
         title: "Are you sure?",
         text: "Once deleted, you will not be able to recover this",
@@ -32,13 +32,13 @@ let Delete = (e)=>{
             icon: "success",
         });
         axios
-            .delete(`${apiUrl}/hotels/${id}`)
-            .then((res) => setHotel(res.data.response))
+            .delete(`${apiUrl}/shows/${id}`)
+            .then((res) => setShow(res.data.response))
             .catch((err) => err.message);
         } else {
-        swal("Your hotel is safe!");
+        swal("Your show is safe!");
         }
-        navigate('/myhotels')
+        navigate('/myshows')
     });
 }
 
@@ -46,9 +46,9 @@ let Delete = (e)=>{
     return (
         <div className="w-100 min-h flex j-evenly wrap g-5 p-5 bg-hotel">
             <div className="w-100">
-                <h1 className="text-center">My hotels</h1>
+                <h1 className="text-center">My shows</h1>
             </div>
-            {hotel.length > 0 ? hotel.map((item) => <Carduser hotel={true} name={item.name}   erase={Delete} photo={item.photo} key={item._id} id={item._id} capacity={item.capacity} />) : <h2 className="min-h-50">Hotels not found</h2>}
+            {show.length > 0 ? show.map((item) => <Carduser show={true} name={item.name}  erase={erase} photo={item.photo} key={item._id} id={item._id} date={item.date.slice(0,10) } description={item.description} price={item.price.toFixed(2)} />) : <h2 className="min-h-50">Hotels not found</h2>}
         </div>
     );
 }
