@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import swal from 'sweetalert'
 
-export const SignUp = () => {
+export const SignUp = ({userRole}) => {
 
     let formRef = useRef(null)
     let notify = (text)=>{
@@ -33,6 +33,7 @@ export const SignUp = () => {
             let newUser = {
                 name: values.fName,
                 lastName: values.lName,
+                role: userRole,
                 age: values.age,
                 photo: values.photo,
                 email: values.email,
