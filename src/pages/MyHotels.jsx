@@ -37,7 +37,7 @@ let Delete = (e)=>{
         navigate('/myhotels')
     });
 }
-console.log(userHotels)
+
 
 
     return (
