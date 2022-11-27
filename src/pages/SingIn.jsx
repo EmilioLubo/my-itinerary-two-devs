@@ -41,7 +41,6 @@ export default function Login() {
         e.preventDefault()
     dispatch(signIn(dato))
     .then(res => {
-        console.log(res)
         if(res.payload.success){
             swal({
                 title:'success',
