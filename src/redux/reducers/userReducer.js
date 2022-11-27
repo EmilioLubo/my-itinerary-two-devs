@@ -89,7 +89,44 @@ const userReducer = createReducer(initialState,(item)=>{
                 load:false,
                 error:true
             }
-        }) 
+        })
+        .addCase(userActions.signOut.pending, (state, action) => {
+            return {
+                ...state,
+                load:true,
+                error:false
+            }
+        })
+        .addCase(userActions.signOut.fulfilled, (state, action) => {
+            const {success,response} = action.payload
+            if(success){
+                localStorage.removeItem('token')
+                let newState = {
+                    ...state,
+                    photo: '',
+                    name: '',
+                    logged: false,
+                    role: '',
+                    token: '',
+                    load: false,
+                    error:false
+                }
+                return newState
+            } else{
+                let newState = {
+                    ...state,
+                    message: response
+                }
+                return newState
+            }
+        })
+        .addCase(userActions.signOut.rejected, (state, action) => {
+            return {
+                ...state,
+                load:false,
+                error:true
+            }
+        })
 })
 
 export default userReducer
