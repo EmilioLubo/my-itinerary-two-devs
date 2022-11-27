@@ -18,8 +18,28 @@ const signIn = createAsyncThunk('signIn',async(datos)=>{
     }
 })
 
+const signToken = createAsyncThunk('signToken', async(token) => {
+    let headers = {headers: {'Authorization': `Bearer ${token}`}}
+    try {
+        let user = await axios.post(`${apiUrl}/auth/token`, null, headers)
+        return {
+            success:user.data.success,
+            response: {
+                user: user.data.response,
+                token
+            }
+        }
+    } catch (error) {
+        return {
+            success: false,
+            response: error.response.data.message
+        }
+    }
+})
+
 const userActions = {
-    signIn
+    signIn,
+    signToken
 }
 
 export default userActions

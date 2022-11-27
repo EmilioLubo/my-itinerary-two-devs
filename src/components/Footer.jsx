@@ -1,7 +1,10 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 export default function Footer() {
+
+  let {logged, role} = useSelector(state => state.userReducer)
   
   return (
     <div className='flex w-100 j-evenly footer align-center pt-1 pb-2'>
@@ -15,6 +18,11 @@ export default function Footer() {
       <div className='footer-buttons pt-1'>
           <Link to='/cities' className='link'>Cities</Link>
           <Link to="/Hotels" className='link'>Hotels</Link>
+          {(logged && role === 'user' ?
+          <>
+          <Link to='/myitineraries' className='link'>My Itineraries</Link>
+          <Link to='/myshows' className='link'>My Shows</Link>
+          </> : <></>)}
           <Link to='/newcity' className='link'>Add new city</Link>
           <Link to='/newhotel' className='link'>Add new hotel</Link>
       </div>
