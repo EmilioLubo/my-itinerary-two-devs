@@ -4,17 +4,20 @@ import swal from "sweetalert";
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import showsActions from "../redux/actions/showAction";
+import userAction from "../redux/actions/userAction";
 
 
-export default function MyShows() {
+export default function MyShows({id}) {
     let {show} = useSelector(state=>state.showsReducer)
     let navigate = useNavigate()
     let {getShow,deleteShow}= showsActions
     let dispatch = useDispatch()
+    let {signToken} = userAction
+    let {token} = useSelector(state=>state.userReducer)
     
 
     useEffect(() => {
-        dispatch(getShow('636d210297606439046194ba'))
+        dispatch(getShow(id))
     }, []);
 let erase = (e)=>{
     let id = e.target.value
