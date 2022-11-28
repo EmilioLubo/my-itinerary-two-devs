@@ -3,7 +3,6 @@ import apiUrl from '../url'
 import axios from 'axios'
 import swal from 'sweetalert'
 import { useNavigate } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -65,7 +64,7 @@ export default function Editprofile({id}) {
                 <input className='w-100 fs-2 btn p-1' type="submit" value="Edit" />
             </div>
         </form>
-        <ToastContainer/>
+
     </div>
   )
 }

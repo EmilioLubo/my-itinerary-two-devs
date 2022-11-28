@@ -47,7 +47,7 @@ function App() {
         <Route path="/cities" element={<Cities/>}/>
         <Route path="/cities/:id" element={<City/>}/>
         <Route path="/newcity" element={<NewCity/>}/>
-        <Route element={<ProtectedRoute isAllowed={!!logged && role === 'admin'} reDirect={'/'}/> }>
+        <Route element={<ProtectedRoute isAllowed={!!logged} reDirect={'/'}/> }>
         <Route path="/profile/:id" element={<Profile/>}/>
         </Route>
         <Route path="/newhotel" element={<NewHotel/>}/>
