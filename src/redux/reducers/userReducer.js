@@ -2,6 +2,7 @@ import { createReducer } from "@reduxjs/toolkit";
 import userActions from "../actions/userAction";
 
 const initialState = {
+    id:'',
     photo:'',
     name:'',
     logged:false,
@@ -29,6 +30,7 @@ const userReducer = createReducer(initialState,(item)=>{
                 }}))
                 let newState = {
                     ...state,
+                    id: user._id,
                     photo:user.photo,
                     name:user.name,
                     logged:true,
@@ -66,6 +68,7 @@ const userReducer = createReducer(initialState,(item)=>{
                 let {user,token} = response
                 let newState = {
                     ...state,
+                    id:user.user._id,
                     name:user.user.name,
                     photo:user.user.photo,
                     role:user.user.role,
@@ -103,6 +106,7 @@ const userReducer = createReducer(initialState,(item)=>{
                 localStorage.removeItem('token')
                 let newState = {
                     ...state,
+                    id:'',
                     photo: '',
                     name: '',
                     logged: false,

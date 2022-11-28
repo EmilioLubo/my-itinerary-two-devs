@@ -32,7 +32,7 @@ const signToken = createAsyncThunk('signToken', async(token) => {
     } catch (error) {
         return {
             success: false,
-            response: error.response.data.message
+            response: error.response.data
         }
     }
 })

@@ -2,9 +2,9 @@ import {createAsyncThunk} from '@reduxjs/toolkit'
 import axios from 'axios'
 import apiUrl from '../../url'
 
-const getUserItineraries = createAsyncThunk('getUserItineraries', async(userId) => {
+const getUserItineraries = createAsyncThunk('getUserItineraries', async(id) => {
     try {
-        let res = axios.get(`${apiUrl}/itineraries?userId=${userId}`)
+        let res = axios.get(`${apiUrl}/itineraries?userId=${id}`)
         return{
             userItineraries: (await res).data.response
         }

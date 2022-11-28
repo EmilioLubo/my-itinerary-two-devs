@@ -50,9 +50,9 @@ export default function Login() {
             navigate('/')
         }else{
             let dato = res.payload.response
-            notify(dato)
-            let dato1=res.payload.response.message
-            dato1.forEach(item=>notify(item.message))
+            typeof(dato) === 'string' ?
+            notify(dato) :
+            dato.message.forEach(item=>notify(item.message))
         }
         
     }).catch(err=>{

@@ -8,9 +8,10 @@ export const MyItineraries = () => {
     const {userItineraries} = useSelector(state => state.itinerariesReducer)
     const dispatch = useDispatch()
     const {getUserItineraries} = itinerariesActions
+    let {id} = useSelector(state => state.userReducer)
 
     useEffect(() => {
-        dispatch(getUserItineraries("636d210297606439046194bb"))
+        dispatch(getUserItineraries(id))
     }, [])
 
   return (
@@ -22,10 +23,10 @@ export const MyItineraries = () => {
             userItineraries.length > 0 ?
             userItineraries.map(el => {
                 return (
-                    <CardItineraryUser key={el._id} id={el._id} name={el.name} photo={el.photo} description={el.description} price={el.price.toFixed(2)} duration={el.duration} />
+                    <CardItineraryUser key={el._id} userId={el.userId} itId={el._id} name={el.name} photo={el.photo} description={el.description} price={el.price.toFixed(2)} duration={el.duration} />
                 )
             }) :
-            <h2 className='text-center'>No Cities</h2>
+            <h2 className='text-center'>No Itineraries</h2>
         }
       
     </div>

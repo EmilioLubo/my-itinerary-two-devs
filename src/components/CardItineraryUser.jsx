@@ -1,14 +1,17 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {Link, useNavigate } from 'react-router-dom'
 import itinerariesActions from '../redux/actions/itinerariesActions'
 import swal from 'sweetalert'
+import userActions from '../redux/actions/userAction'
 
-export default function CardItineraryyUser  ({name, id, photo, description, price, duration}) {
+export default function CardItineraryyUser  ({name, itId, userId, photo, description, price, duration}) {
 
     const navigate = useNavigate()
     const {deleteItinerary} = itinerariesActions
+    const {signToken} = userActions
     const dispatch = useDispatch()
+    let {id, token} = useSelector(state => state.userReducer)
     
     let deleteHandler = (e)=> {
         swal({
@@ -20,10 +23,23 @@ export default function CardItineraryyUser  ({name, id, photo, description, pric
         })
         .then((willDelete) => {
             if (willDelete) {
-                dispatch(deleteItinerary(e.target.id))
-                swal("!has been deleted!", {
-                    icon: "success",
-                });
+                dispatch(signToken(token))
+                .then(res => {
+                    if(res.payload.success && id === userId){
+                        dispatch(deleteItinerary(itId))
+                        swal("!has been deleted!", {
+                            icon: "success",
+                        })
+                    } else{
+                        typeof res.payload.response === 'string' ?
+                        swal(res.payload.response, {
+                            icon: "error",
+                        }) :
+                        swal('user not allowed', {
+                            icon:'error',
+                        })
+                    }
+                })
             } else {
             swal("Your itinerary is safe!");
             }
@@ -41,8 +57,8 @@ export default function CardItineraryyUser  ({name, id, photo, description, pric
                 <p>Price: ${price}</p>
                 <p>Duration: {duration} hs.</p>
                 <div className='flex j-evenly w-100'>
-                     <Link className='card-button' to={`/edititinerary/${id}`}>Edit</Link>
-                    <button id={id} onClick={deleteHandler} className='card-button'>Delete</button>
+                     <Link className='card-button' to={`/edititinerary/${itId}`}>Edit</Link>
+                    <button onClick={deleteHandler} className='card-button'>Delete</button>
                 </div>
                 
             </article>
