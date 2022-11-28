@@ -20,6 +20,8 @@ import { ItineraryEdit } from "./pages/ItineraryEdit";
 import { useDispatch, useSelector } from "react-redux";
 import userActions from "./redux/actions/userAction";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import Profile from "./pages/Profile";
+
 
 function App() {
 
@@ -33,6 +35,7 @@ function App() {
       dispatch(signToken(token.token.user))
     }
   }, [logged])
+  
   return (
     <Layout>
       <Routes>
@@ -44,6 +47,7 @@ function App() {
         <Route path="/cities" element={<Cities/>}/>
         <Route path="/cities/:id" element={<City/>}/>
         <Route path="/newcity" element={<NewCity/>}/>
+        <Route path="/profile/:id" element={<Profile/>}/>
         <Route path="/mycities" element={<MyCities/>} />
         <Route path="/editcity/:id" element={<CityEdit/>}/>
         <Route path="/newhotel" element={<NewHotel/>}/>
