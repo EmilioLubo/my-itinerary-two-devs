@@ -5,6 +5,7 @@ import swal from 'sweetalert'
 import { useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useSelector } from 'react-redux'
 
 
 
@@ -13,6 +14,7 @@ export default function CreateShow({id}) {
     let [selectDefault, setSelectDefault] = useState("");
     let [dato,setDato]= useState([])
     let navigate = useNavigate()
+    let {token} = useSelector(state => state.userReducer)
     let notify = (text)=>{
         toast.warn(text, {
             position: "top-center",
@@ -40,16 +42,16 @@ export default function CreateShow({id}) {
         let create = {
             hotelID:selectDefault,
             name: e.target.name.value,
-            description:e.target.description.value,
-            photo:e.target.photo.value,
-            price:e.target.price.value,
-            date:e.target.date.value,
-            userID:id
+            description: e.target.description.value,
+            photo: e.target.photo.value,
+            price: e.target.price.value,
+            date: e.target.date.value,
+            userID: id
         }
        
 
-        
-        axios.post(`${apiUrl}/shows`, create)
+        let headers = {headers: {'Authorization': `Bearer ${token}`}}
+        axios.post(`${apiUrl}/shows`, create, headers)
             .then(res => {
                 if(res.data.success){
                     swal({
@@ -63,6 +65,13 @@ export default function CreateShow({id}) {
                     error.forEach(item=>notify(item.message))
                 }
                 
+            })
+            .catch((err) => {
+                swal({
+                    title:'Error',
+                    text: err.response.data,
+                    icon:'error',
+                })
             })
     }
 

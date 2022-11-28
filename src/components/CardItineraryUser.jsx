@@ -3,17 +3,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import {Link, useNavigate } from 'react-router-dom'
 import itinerariesActions from '../redux/actions/itinerariesActions'
 import swal from 'sweetalert'
-import userActions from '../redux/actions/userAction'
 
-export default function CardItineraryyUser  ({name, itId, userId, photo, description, price, duration}) {
+export default function CardItineraryyUser  ({name, itId, photo, description, price, duration}) {
 
     const navigate = useNavigate()
     const {deleteItinerary} = itinerariesActions
-    const {signToken} = userActions
     const dispatch = useDispatch()
-    let {id, token} = useSelector(state => state.userReducer)
+    let {token} = useSelector(state => state.userReducer)
     
-    let deleteHandler = (e)=> {
+    let deleteHandler = ()=> {
         swal({
             title: "Are you sure?",
             text: "Once deleted, you will not be able to recover this",
@@ -23,25 +21,20 @@ export default function CardItineraryyUser  ({name, itId, userId, photo, descrip
         })
         .then((willDelete) => {
             if (willDelete) {
-                dispatch(signToken(token))
-                .then(res => {
-                    if(res.payload.success && id === userId){
-                        dispatch(deleteItinerary(itId))
-                        swal("!has been deleted!", {
+                    dispatch(deleteItinerary({itId, token}))
+                    .then(res => {
+                        console.log(res);
+                        swal('Has been deleted!', {
                             icon: "success",
                         })
-                    } else{
-                        typeof res.payload.response === 'string' ?
-                        swal(res.payload.response, {
+                    })
+                    .catch(err => {
+                        swal(err.payload.response, {
                             icon: "error",
-                        }) :
-                        swal('user not allowed', {
-                            icon:'error',
                         })
-                    }
-                })
+                    })
             } else {
-            swal("Your itinerary is safe!");
+                swal("Your itinerary is safe!");
             }
             navigate('/myitineraries')
         })

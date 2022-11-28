@@ -1,8 +1,5 @@
-import React, {useEffect} from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
 import Carousel from '../components/Carousel'
-import citiesActions from '../redux/actions/citiesActions'
-import hotelsActions from '../redux/actions/hotelsAction'
 
 export default function Home2() {
 
