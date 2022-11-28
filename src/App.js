@@ -27,7 +27,7 @@ function App() {
 
   let {signToken} = userActions
   let dispatch = useDispatch()
-  let {logged, role} = useSelector(state => state.userReducer)
+  let {logged, role,id} = useSelector(state => state.userReducer)
   
   useEffect(() => {
     let token = JSON.parse(localStorage.getItem('token'))
@@ -48,14 +48,16 @@ function App() {
         <Route path="/cities/:id" element={<City/>}/>
         <Route path="/newcity" element={<NewCity/>}/>
         <Route path="/profile/:id" element={<Profile/>}/>
-        <Route path="/mycities" element={<MyCities/>} />
         <Route path="/editcity/:id" element={<CityEdit/>}/>
         <Route path="/newhotel" element={<NewHotel/>}/>
-        <Route path="/myhotels" element={<MyHotels/>}/>
+        <Route element={<ProtectedRoute isAllowed={!!logged && role === 'admin'} reDirect={'/'}/> }>
+          <Route path="/mycities" element={<MyCities/>} />
+          <Route path="/myhotels" element={<MyHotels />}/>
+        </Route>
         <Route element={<ProtectedRoute isAllowed={!!logged && role === 'user'} reDirect={'/'}/>}>
           <Route path="/myitineraries" element={<MyItineraries/>}/>
           <Route path="/edititinerary/:id" element={<ItineraryEdit/>}/>
-          <Route path="/myshows" element={<MyShows/>}/>
+          <Route path="/myshows" element={<MyShows id={id}/>}/>
         </Route>
         <Route path="*" element={<NotFoundPage/>}></Route>
       </Routes>
