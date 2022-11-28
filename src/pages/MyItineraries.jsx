@@ -20,7 +20,7 @@ export const MyItineraries = () => {
         <div className="w-100">
                 <h1 className="text-center">My itineraries</h1>
                 <div className='flex j-center align-center mt-5'>
-                    <Link className="link" to={'/newitinerary'}>ADD A NEW ITINERARY</Link>
+                    <Link className="btn" to={'/newitinerary'}>ADD A NEW ITINERARY</Link>
                 </div>
             </div>
         {
