@@ -47,6 +47,7 @@ let erase = (e)=>{
         <div className="w-100 min-h flex j-evenly wrap g-5 p-5 bg-hotel">
             <div className="w-100">
                 <h1 className="text-center">My shows</h1>
+                <button>Add New Show</button>
             </div>
             {show.length > 0 ? show.map((item) => <Carduser show={true} name={item.name}  erase={erase} photo={item.photo} key={item._id} id={item._id} date={item.date.slice(0,10) } description={item.description} price={item.price.toFixed(2)} />) : <h2 className="min-h-50">Hotels not found</h2>}
         </div>
