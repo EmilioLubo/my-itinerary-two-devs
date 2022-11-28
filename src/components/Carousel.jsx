@@ -16,6 +16,7 @@ export default function Carousel() {
     let [num2, setNum2] = useState(0)
     let [num3, setNum3] = useState(3)
     let [num4, setNum4] = useState(3)
+    let [count, setCount] = useState(0)
 
 
     useEffect(() => {
@@ -25,11 +26,12 @@ export default function Carousel() {
 
     useEffect(() => {
         let idinterval = setInterval(() => {
+            setCount(++count)
             next();
         }, 3000);
         return () =>
         clearInterval(idinterval);
-    }, [cities, hotels]);
+    }, [count]);
 
     let prev = () => {
         num1 > 0 ? setNum1(--num1) : setNum1(cities.length - 1)
@@ -39,9 +41,9 @@ export default function Carousel() {
     }
     let next = () => {
         num1 < cities.length - 1 ? setNum1(++num1) : setNum1(0)
-        num2 < cities.length - 1 ? setNum2(++num2) : setNum2(0)
-        num3 < cities.length - 1 ? setNum3(++num3) : setNum3(0)
-        num4 < cities.length - 1 ? setNum4(++num4) : setNum4(0) 
+        num2 < hotels.length - 1 ? setNum2(++num2) : setNum2(0)
+        num3 < cities.length - 1 ? setNum3(++num3) : setNum3(3)
+        num4 < hotels.length - 1 ? setNum4(++num4) : setNum4(3) 
     }
 
     return (
