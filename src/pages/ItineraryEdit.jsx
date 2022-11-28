@@ -8,11 +8,11 @@ import swal from 'sweetalert'
 import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import userActions from '../redux/actions/userAction'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 export const ItineraryEdit = () => {
 
-    const {id} = useParams()
+    const itId = useParams().id
     const navigate = useNavigate()
     let [itinerary, setItinerary] = useState({})
     let [name, setName] = useState('')
@@ -21,8 +21,9 @@ export const ItineraryEdit = () => {
     let [price, setPrice] = useState('')
     let [duration, setDuration] = useState('')
     let formRef = useRef(null)
+    let dispatch = useDispatch()
     let {signToken} = userActions
-    let {token} = useSelector(state => state.userReducer)
+    let {id, token} = useSelector(state => state.userReducer)
 
     let notify = (text)=>{
         toast.warn(text, {
@@ -38,7 +39,7 @@ export const ItineraryEdit = () => {
     }
 
     useEffect(()=> {
-        axios.get(`${apiUrl}/itineraries/${id}`)
+        axios.get(`${apiUrl}/itineraries/${itId}`)
             .then(res => {
                 setItinerary(res.data.response)
                 setName(res.data.response.name)
@@ -75,34 +76,46 @@ export const ItineraryEdit = () => {
         e.preventDefault();
         const formData = new FormData(formRef.current)
         const values = Object.fromEntries(formData)
-        console.log(photo)
         let updateItinerary = {
             name: values.name,
             description: values.description,
             photo: [values.photo1, values.photo2, values.photo3],
             price: values.price,
             duration: values.duration,
-            userId: "636d210297606439046194bb",
+            userId: id,
         };
-        axios.put(`${apiUrl}/itineraries/${itinerary._id}`, updateItinerary)
-            .then(res => {
-                if(res.data.success){
-                    swal({
-                        title:'success',
-                        text: res.data.message,
-                        icon:'success',
+        dispatch(signToken(token))
+        .then(res => {
+            if(res.payload.success && id === itinerary.userId._id){
+                axios.put(`${apiUrl}/itineraries/${itId}`, updateItinerary)
+                    .then(res => {
+                        if(res.data.success){
+                            swal({
+                                title:'success',
+                                text: res.data.message,
+                                icon:'success',
+                            })
+                            navigate('/myitineraries')
+                        }else{
+                            res.data.message.forEach(el=> notify(el.message))
+                        }
                     })
-                    navigate('/myitineraries')
-                }else{
-                    res.data.message.forEach(el=> notify(el.message))
-                }
-            })
-            .catch((err) => {
-                swal({
-                    title:'Error',
-                    text: err.response.data.message,
+                    .catch((err) => {
+                        swal({
+                            title:'Error',
+                            text: err.response.data.message,
+                            icon:'error',
+                    })
+                })
+            } else{
+                typeof res.payload.response === 'string' ?
+                swal(res.payload.response, {
+                    icon: "error",
+                }) :
+                swal('user not allowed', {
                     icon:'error',
-            })
+                })
+            }
         })
     }
 
@@ -137,7 +150,7 @@ export const ItineraryEdit = () => {
                             <input onChange={priceHandler} className='w-100' type="number" name="price" min='1' value={price} required /></label>
                             <label className='fw'>
                             <legend>Itinerary duration:</legend>
-                            <input onChange={durationHandler} className='w-100' type="number" name="price" min='1' value={duration} required /></label>
+                            <input onChange={durationHandler} className='w-100' type="number" name="duration" min='1' value={duration} required /></label>
                             <div className='new-buttons flex j-evenly w-100 pt-1'>
                                 <input className='w-100 fs-2 btn p-1' type="submit" value="Edit" />
                                 <Link to={'/myitineraries'} className='btn'>Go back</Link>
@@ -146,7 +159,7 @@ export const ItineraryEdit = () => {
                     </>
                     
                 ) :
-                <h1>No cities</h1>
+                <h1>No itineraries</h1>
             }
             <ToastContainer/>
     </div>

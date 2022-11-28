@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import CardItineraryUser from '../components/CardItineraryUser'
 import { useDispatch, useSelector } from 'react-redux'
 import itinerariesActions from '../redux/actions/itinerariesActions'
+import { Link } from 'react-router-dom'
 
 export const MyItineraries = () => {
 
@@ -18,6 +19,9 @@ export const MyItineraries = () => {
     <div className="w-100 min-h flex j-evenly wrap g-5 p-5 bg-hotel">
         <div className="w-100">
                 <h1 className="text-center">My itineraries</h1>
+                <div className='flex j-center align-center mt-5'>
+                    <Link className="link" to={'/newitinerary'}>ADD A NEW ITINERARY</Link>
+                </div>
             </div>
         {
             userItineraries.length > 0 ?

@@ -2,7 +2,6 @@ import { createReducer } from "@reduxjs/toolkit";
 import userActions from "../actions/userAction";
 
 const initialState = {
-    id:'',
     photo:'',
     name:'',
     logged:false,
@@ -31,11 +30,11 @@ const userReducer = createReducer(initialState,(item)=>{
                 }}))
                 let newState = {
                     ...state,
-                    id: user._id,
                     photo:user.photo,
                     name:user.name,
                     logged:true,
                     role:user.role,
+                    id: user._id,
                     token:token,
                     load:false,
                     error:false
@@ -69,11 +68,10 @@ const userReducer = createReducer(initialState,(item)=>{
                 let {user,token} = response
                 let newState = {
                     ...state,
-                    id:user.user._id,
                     name:user.user.name,
                     photo:user.user.photo,
-                    role:user.user.role,
                     logged:true,
+                    role:user.user.role,
                     id:user.user._id,
                     token:token,
                     load:false,
