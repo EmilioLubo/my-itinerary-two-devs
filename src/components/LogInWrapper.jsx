@@ -9,7 +9,7 @@ export const LogInWrapper = () => {
     let [showLogin, setShowLogin] = useState(false)
     let location = useLocation()
     let navigate = useNavigate()
-    let {name, photo, logged, token} = useSelector(state => state.userReducer)
+    let {name, photo, logged, token,id} = useSelector(state => state.userReducer)
     let {signOut} = userActions
     let dispatch = useDispatch()
 
@@ -60,7 +60,7 @@ export const LogInWrapper = () => {
             <ul className={`${showLogin ? '' : 'hidden'} drop-list flex f-column g-1 p-1 list-border`}>
                 {logged ?
                 <>
-                    <li><Link className='nav-link'>My Profile</Link></li>
+                    <li><Link className='nav-link' to={`/profile/${id}`}>My Profile</Link></li>
                     <li><button onClick={signOutHandler} className='nav-link sign-out'>Sign Out</button></li>
                 </> :
                 <>

@@ -6,6 +6,7 @@ const initialState = {
     name:'',
     logged:false,
     role:'',
+    id:'',
     token:'',
     load: false,
     error: false
@@ -70,6 +71,7 @@ const userReducer = createReducer(initialState,(item)=>{
                     photo:user.user.photo,
                     role:user.user.role,
                     logged:true,
+                    id:user.user._id,
                     token:token,
                     load:false,
                     error:false
