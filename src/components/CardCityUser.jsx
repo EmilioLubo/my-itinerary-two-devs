@@ -1,14 +1,17 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {Link, useNavigate } from 'react-router-dom'
 import citiesActions from '../redux/actions/citiesActions'
+import userActions from '../redux/actions/userAction'
 import swal from 'sweetalert'
 
-export default function CardCityUser  ({name, id, photo, continent, population}) {
+export default function CardCityUser  ({name, cId, userId, photo, continent, population}) {
 
     const navigate = useNavigate()
     const {deleteCity} = citiesActions
     const dispatch = useDispatch()
+    const {signToken} = userActions
+    let {id, token} = useSelector(state => state.userReducer)
     
     let deleteHandler = (e)=> {
         swal({
@@ -20,10 +23,23 @@ export default function CardCityUser  ({name, id, photo, continent, population})
         })
         .then((willDelete) => {
             if (willDelete) {
-                dispatch(deleteCity(e.target.id))
-                swal("!has been deleted!", {
-                    icon: "success",
-                });
+                dispatch(signToken(token))
+                .then(res => {
+                    if(res.payload.success && id === userId){
+                        dispatch(deleteCity(cId))
+                        swal("!has been deleted!", {
+                            icon: "success",
+                        });
+                    } else{
+                        typeof res.payload.response === 'string' ?
+                        swal(res.payload.response, {
+                            icon: "error",
+                        }) :
+                        swal('user not allowed', {
+                            icon:'error',
+                        })
+                    }
+                })
             } else {
             swal("Your city is safe!");
             }
@@ -40,8 +56,8 @@ export default function CardCityUser  ({name, id, photo, continent, population})
                 <p className='text-center'>Continent: {continent}</p>
                 <p>Population: {population}</p>
                 <div className='flex j-evenly w-100'>
-                     <Link className='card-button' to={`/editCity/${id}`}>Edit</Link>
-                    <button id={id} onClick={deleteHandler} className='card-button'>Delete</button>
+                     <Link className='card-button' to={`/editCity/${cId}`}>Edit</Link>
+                    <button onClick={deleteHandler} className='card-button'>Delete</button>
                 </div>
                 
             </article>
