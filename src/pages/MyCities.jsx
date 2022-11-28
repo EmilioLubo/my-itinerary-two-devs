@@ -8,9 +8,10 @@ export const MyCities = () => {
     const {userCities} = useSelector(state => state.citiesReducer)
     const dispatch = useDispatch()
     const {getUserCities} = citiesActions
+    let {id} = useSelector(state => state.userReducer)
 
     useEffect(() => {
-        dispatch(getUserCities("636d210297606439046194bb"))
+        dispatch(getUserCities(id))
     }, [])
 
   return (
@@ -22,7 +23,7 @@ export const MyCities = () => {
             userCities.length > 0 ?
             userCities.map(el => {
                 return (
-                    <CardCityUser key={el._id} id={el._id} name={el.name} photo={el.photo} continent={el.continent} population={Intl.NumberFormat().format(el.population)} />
+                    <CardCityUser key={el._id} cId={el._id} userId={el.userId} name={el.name} photo={el.photo} continent={el.continent} population={Intl.NumberFormat().format(el.population)} />
                 )
             }) :
             <h2 className='text-center'>No Cities</h2>

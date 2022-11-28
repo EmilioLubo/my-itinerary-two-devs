@@ -21,6 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 import userActions from "./redux/actions/userAction";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
+import { NewItinerary } from "./pages/NewItinerary";
 
 
 function App() {
@@ -46,18 +47,19 @@ function App() {
         <Route path="/Hotels/:id" element={<Hotel/>}/>
         <Route path="/cities" element={<Cities/>}/>
         <Route path="/cities/:id" element={<City/>}/>
-        <Route path="/newcity" element={<NewCity/>}/>
         <Route element={<ProtectedRoute isAllowed={!!logged} reDirect={'/'}/> }>
-        <Route path="/profile/:id" element={<Profile/>}/>
+          <Route path="/profile/:id" element={<Profile/>}/>
         </Route>
-        <Route path="/newhotel" element={<NewHotel/>}/>
         <Route element={<ProtectedRoute isAllowed={!!logged && role === 'admin'} reDirect={'/'}/> }>
+          <Route path="/newcity" element={<NewCity/>}/>
           <Route path="/editcity/:id" element={<CityEdit/>}/>
           <Route path="/mycities" element={<MyCities/>} />
+          <Route path="/newhotel" element={<NewHotel/>}/>
           <Route path="/myhotels" element={<MyHotels />}/>
         </Route>
         <Route element={<ProtectedRoute isAllowed={!!logged && role === 'user'} reDirect={'/'}/>}>
           <Route path="/myitineraries" element={<MyItineraries/>}/>
+          <Route path="/newitinerary" element={<NewItinerary/>}/>
           <Route path="/edititinerary/:id" element={<ItineraryEdit/>}/>
           <Route path="/myshows" element={<MyShows id={id}/>}/>
         </Route>
