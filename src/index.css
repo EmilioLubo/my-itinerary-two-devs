@@ -211,6 +211,9 @@ a{
 .h-75{
   height: 75.2vh;
 }
+.h-60{
+  min-height: 59vh;
+}
 .h-50{
   height: 50vh;
 }

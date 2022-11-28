@@ -23,8 +23,12 @@ export default function Footer() {
           <Link to='/myitineraries' className='link'>My Itineraries</Link>
           <Link to='/myshows' className='link'>My Shows</Link>
           </> : <></>)}
+          {(logged && role === 'admin' ?
+          <>
           <Link to='/newcity' className='link'>Add new city</Link>
           <Link to='/newhotel' className='link'>Add new hotel</Link>
+          </> : <></>)}
+          
       </div>
       <div className='flex f-column pt-1'>
         <p className='copyr'>copyright @ twoDevs</p>
