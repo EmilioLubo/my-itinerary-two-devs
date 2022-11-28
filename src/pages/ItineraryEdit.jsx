@@ -7,8 +7,7 @@ import apiUrl from '../url'
 import swal from 'sweetalert'
 import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import userActions from '../redux/actions/userAction'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 export const ItineraryEdit = () => {
 
@@ -21,8 +20,6 @@ export const ItineraryEdit = () => {
     let [price, setPrice] = useState('')
     let [duration, setDuration] = useState('')
     let formRef = useRef(null)
-    let dispatch = useDispatch()
-    let {signToken} = userActions
     let {id, token} = useSelector(state => state.userReducer)
 
     let notify = (text)=>{
@@ -84,38 +81,26 @@ export const ItineraryEdit = () => {
             duration: values.duration,
             userId: id,
         };
-        dispatch(signToken(token))
-        .then(res => {
-            if(res.payload.success && id === itinerary.userId._id){
-                axios.put(`${apiUrl}/itineraries/${itId}`, updateItinerary)
-                    .then(res => {
-                        if(res.data.success){
-                            swal({
-                                title:'success',
-                                text: res.data.message,
-                                icon:'success',
-                            })
-                            navigate('/myitineraries')
-                        }else{
-                            res.data.message.forEach(el=> notify(el.message))
-                        }
-                    })
-                    .catch((err) => {
+        let headers = {headers: {'Authorization': `Bearer ${token}`}}
+            axios.put(`${apiUrl}/itineraries/${itId}`, updateItinerary, headers)
+                .then(res => {
+                    if(res.data.success){
                         swal({
-                            title:'Error',
-                            text: err.response.data.message,
-                            icon:'error',
-                    })
+                            title:'success',
+                            text: res.data.message,
+                            icon:'success',
+                        })
+                        navigate('/myitineraries')
+                    }else{
+                        res.data.message.forEach(el=> notify(el.message))
+                    }
                 })
-            } else{
-                typeof res.payload.response === 'string' ?
-                swal(res.payload.response, {
-                    icon: "error",
-                }) :
-                swal('user not allowed', {
-                    icon:'error',
+                .catch((err) => {
+                    swal({
+                        title:'Error',
+                        text: err.response.data,
+                        icon:'error',
                 })
-            }
         })
     }
 

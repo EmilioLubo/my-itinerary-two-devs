@@ -5,8 +5,8 @@ import apiUrl from "../url";
 import swal from 'sweetalert'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useDispatch, useSelector } from "react-redux";
-import userActions from "../redux/actions/userAction";
+import { useSelector } from "react-redux";
+
 
 
 export const NewCity = () => {
@@ -15,8 +15,6 @@ export const NewCity = () => {
     let formRef = useRef(null)
     let selectRef = useRef(null)
     let {id, token} = useSelector(state => state.userReducer)
-    let {signToken} = userActions
-    let dispatch = useDispatch()
 
     let notify = (text)=>{
         toast.warn(text, {
@@ -43,35 +41,27 @@ export const NewCity = () => {
             population: values.population,
             userId: id,
         };
-        dispatch(signToken(token))
-        .then(res => {
-            if(res.payload.success){
-                axios.post(`${apiUrl}/cities`, newCity)
-                    .then((res) => {
-                        if(res.data.success){
-                            let id = res.data.id
-                            swal({
-                                title:'success',
-                                text:res.data.message,
-                                icon:'success',
-                            })
-                            navigate(`/cities/${id}`)
-                        }else{
-                            res.data.message.forEach(el=> notify(el.message))
-                        }
-                    })
-                    .catch((err) => {
+        let headers = {headers: {'Authorization': `Bearer ${token}`}}
+            axios.post(`${apiUrl}/cities`, newCity, headers)
+                .then((res) => {
+                    if(res.data.success){
+                        let id = res.data.id
                         swal({
-                            title:'Error',
-                            text: err.response.message,
-                            icon:'error',
-                    })
+                            title:'success',
+                            text:res.data.message,
+                            icon:'success',
+                        })
+                        navigate(`/cities/${id}`)
+                    }else{
+                        res.data.message.forEach(el=> notify(el.message))
+                    }
                 })
-            } else{
-                swal(res.payload.response, {
-                    icon: "error",
-                })
-            }
+                .catch((err) => {
+                    swal({
+                        title:'Error',
+                        text: err.response.data,
+                        icon:'error',
+                })      
         })
     };
     let handleSelect = (e) => {

@@ -14,9 +14,10 @@ const getUserItineraries = createAsyncThunk('getUserItineraries', async(id) => {
         }
     } 
 })
-const deleteItinerary = createAsyncThunk('deleteItinerary', async(itineraryId) => {
+const deleteItinerary = createAsyncThunk('deleteItinerary', async({itId, token}) => {
+    let headers = {headers: {'Authorization': `Bearer ${token}`}}
     try {
-        const res = await axios.delete(`${apiUrl}/itineraries/${itineraryId}`)
+        const res = await axios.delete(`${apiUrl}/itineraries/${itId}`, headers)
         return{
             _id: res.data.response._id
         }

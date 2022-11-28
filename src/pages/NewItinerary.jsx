@@ -2,7 +2,6 @@ import React, {useRef, useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import citiesActions from '../redux/actions/citiesActions'
-import userActions from '../redux/actions/userAction'
 import swal from 'sweetalert'
 import{toast, ToastContainer} from 'react-toastify'
 import axios from 'axios'
@@ -15,7 +14,6 @@ export const NewItinerary = () => {
     let [selectDefault, setSelectDefault] = useState('')
     let {cities} = useSelector(state => state.citiesReducer)
     let {id, token} = useSelector(state => state.userReducer)
-    let {signToken} = userActions
     let dispatch = useDispatch()
     let {getCities} = citiesActions
     let navigate = useNavigate()
@@ -53,34 +51,26 @@ export const NewItinerary = () => {
             duration: values.duration,
             userId: id,
         };
-        dispatch(signToken(token))
-        .then(res => {
-            if(res.payload.success){
-                axios.post(`${apiUrl}/itineraries`, newItinerary)
-                    .then(res => {
-                        if(res.data.success){
-                            swal({
-                                title:'success',
-                                text: res.data.message,
-                                icon:'success',
-                            })
-                            navigate('/myitineraries')
-                        }else{
-                            res.data.message.forEach(el=> notify(el.message))
-                        }
-                    })
-                    .catch((err) => {
+        let headers = {headers: {'Authorization': `Bearer ${token}`}}
+            axios.post(`${apiUrl}/itineraries`, newItinerary, headers)
+                .then(res => {
+                    if(res.data.success){
                         swal({
-                            title:'Error',
-                            text: err.response.data.message,
-                            icon:'error',
-                    })
+                            title:'success',
+                            text: res.data.message,
+                            icon:'success',
+                        })
+                        navigate('/myitineraries')
+                    }else{
+                        res.data.message.forEach(el=> notify(el.message))
+                    }
                 })
-            } else{
-                swal(res.payload.response, {
-                    icon: "error",
+                .catch((err) => {
+                    swal({
+                        title:'Error',
+                        text: err.response.data,
+                        icon:'error',
                 })
-            }
         })
     }
 
