@@ -27,10 +27,23 @@ const deleteShow = createAsyncThunk('deleteShow',async(id)=>{
         }
     }
 })
+const createShow = createAsyncThunk('createShow',async(datos)=>{
+    try{
+        let res = await axios.post(`${apiUrl}/shows${datos}`)
+        return {
+            show:res.data.response
+        }
+    }catch (error) {
+        return{
+            error: 'Error'
+        }
+    }
+})
 
 const showsActions = {
     getShow,
-    deleteShow
+    deleteShow,
+    createShow
 }
 
 export default showsActions

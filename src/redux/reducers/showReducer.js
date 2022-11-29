@@ -14,6 +14,9 @@ const showsReducer = createReducer(initialState,(item)=>{
     item.addCase(showsActions.deleteShow.fulfilled,(state,action)=>{
         return{...state,load:false,error:false,show:state.show.filter(item=>item._id !== action.payload._id)}
     })
+    item.addCase(showsActions.createShow.fulfilled,(state,action)=>{
+        return {...state,load:false,error:false,...action.payload}
+    })
 })
 
 export default showsReducer
