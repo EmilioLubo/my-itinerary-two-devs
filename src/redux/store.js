@@ -5,6 +5,8 @@ import filterCitiesReducer from "./reducers/filterCitiesReducer";
 import filterHotelsReducer from "./reducers/filterHotelsReducer";
 import itinerariesReducer from "./reducers/itinerariesReducer";
 import showsReducer from "./reducers/showReducer";
+import userReducer from "./reducers/userReducer"
+import profileReducer from "./reducers/profileReducer";
 
 export const store = configureStore({
     reducer:{
@@ -13,6 +15,8 @@ export const store = configureStore({
                 filterCitiesReducer,
                 filterHotelsReducer,
                 itinerariesReducer,
-                showsReducer
+                showsReducer,
+                userReducer,
+                profileReducer
             }
 })

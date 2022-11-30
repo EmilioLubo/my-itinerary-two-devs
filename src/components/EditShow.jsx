@@ -5,12 +5,14 @@ import swal from 'sweetalert'
 import { useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useSelector } from 'react-redux'
 
 
 
 
 export default function Edit({id}) {
     let navigate = useNavigate()
+    let {token} = useSelector(state => state.userReducer)
     let notify = (text)=>{
         toast.warn(text, {
             position: "top-center",
@@ -33,8 +35,8 @@ export default function Edit({id}) {
         e.target.price.value === '' ? vacio.price = e.target.price.value : editShow.price=e.target.price.value
         e.target.photo.value === '' ? vacio.photo = e.target.photo.value : editShow.photo=e.target.photo.value
         e.target.date.value === '' ? vacio.date = e.target.date.value : editShow.date=e.target.date.value
-        
-        axios.patch(`${apiUrl}/shows/${id}`, editShow)
+        let headers = {headers: {'Authorization': `Bearer ${token}`}}
+        axios.patch(`${apiUrl}/shows/${id}`,editShow,headers)
             .then(res => {
                 if(res.data.success){
                     swal({

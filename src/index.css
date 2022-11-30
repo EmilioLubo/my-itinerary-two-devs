@@ -35,7 +35,11 @@ a{
   width: 7rem;
 }
 .nav-link:hover{
-  color: var(--main)
+  color: var(--main);
+  cursor: pointer;
+}
+.sign-out{
+  font-size: 1em;
 }
 .banner{
   background-image: image('/public/img/pexels-pixabay-164041.jpg');
@@ -57,6 +61,7 @@ a{
   list-style: none;
 }
 .user-icon{
+  border-radius: 50%;
   width: 4rem;
   margin-right: 1rem;
 }
@@ -65,6 +70,11 @@ a{
   transition: all 1s;
   transform: translatey(-10px);
   box-shadow: 1px 1px black;
+  cursor: pointer;
+}
+.name-anim:hover{
+  cursor: pointer;
+  color: var(--main);
 }
 .list-border{
   text-align: center;
@@ -146,6 +156,9 @@ a{
 .mb-2{
   margin-bottom: 2rem;
 }
+.me-2{
+  margin-right: 1rem;
+}
 .me-3{
   margin-right: 2rem;
 }
@@ -177,6 +190,12 @@ a{
 .fs-2{
   font-size: .8em;
 }
+.fs-5{
+  font-size: 1.2em;
+}
+.fw-bold{
+  font-weight: 600;
+}
 .rojo{
   color:red;
 }
@@ -191,6 +210,9 @@ a{
 }
 .h-75{
   height: 75.2vh;
+}
+.h-60{
+  min-height: 59vh;
 }
 .h-50{
   height: 50vh;

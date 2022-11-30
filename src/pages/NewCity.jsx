@@ -5,6 +5,8 @@ import apiUrl from "../url";
 import swal from 'sweetalert'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useSelector } from "react-redux";
+
 
 
 export const NewCity = () => {
@@ -12,6 +14,7 @@ export const NewCity = () => {
     let navigate = useNavigate();
     let formRef = useRef(null)
     let selectRef = useRef(null)
+    let {id, token} = useSelector(state => state.userReducer)
 
     let notify = (text)=>{
         toast.warn(text, {
@@ -36,29 +39,29 @@ export const NewCity = () => {
             continent: values.continent,
             photo: values.photo,
             population: values.population,
-            userId: "636d210297606439046194bb",
+            userId: id,
         };
-        axios
-            .post(`${apiUrl}/cities`, newCity)
-            .then((res) => {
-                if(res.data.success){
-                    let id = res.data.id
+        let headers = {headers: {'Authorization': `Bearer ${token}`}}
+            axios.post(`${apiUrl}/cities`, newCity, headers)
+                .then((res) => {
+                    if(res.data.success){
+                        let id = res.data.id
+                        swal({
+                            title:'success',
+                            text:res.data.message,
+                            icon:'success',
+                        })
+                        navigate(`/cities/${id}`)
+                    }else{
+                        res.data.message.forEach(el=> notify(el.message))
+                    }
+                })
+                .catch((err) => {
                     swal({
-                        title:'success',
-                        text:res.data.message,
-                        icon:'success',
-                    })
-                    navigate(`/cities/${id}`)
-                }else{
-                    res.data.message.forEach(el=> notify(el.message))
-                }
-            })
-            .catch((err) => {
-                swal({
-                    title:'Error',
-                    text: err.response.message,
-                    icon:'error',
-            })
+                        title:'Error',
+                        text: err.response.data,
+                        icon:'error',
+                })      
         })
     };
     let handleSelect = (e) => {

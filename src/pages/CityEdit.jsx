@@ -7,10 +7,11 @@ import apiUrl from '../url'
 import swal from 'sweetalert'
 import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import { useSelector } from 'react-redux'
 
 export const CityEdit = () => {
 
-    const {id} = useParams()
+    const cId = useParams().id
     const navigate = useNavigate()
     let [city, setCity] = useState({})
     let [name, setName] = useState('')
@@ -18,6 +19,7 @@ export const CityEdit = () => {
     let [continent, setContinent] = useState('')
     let [population, setPopulation] = useState('')
     let formRef = useRef(null)
+    let {id, token} = useSelector(state => state.userReducer)
 
     let notify = (text)=>{
         toast.warn(text, {
@@ -33,7 +35,7 @@ export const CityEdit = () => {
     }
 
     useEffect(()=> {
-        axios.get(`${apiUrl}/cities/${id}`)
+        axios.get(`${apiUrl}/cities/${cId}`)
             .then(res => {
                 setCity(res.data.response)
                 setName(res.data.response.name)
@@ -60,34 +62,33 @@ export const CityEdit = () => {
         e.preventDefault();
         const formData = new FormData(formRef.current)
         const values = Object.fromEntries(formData)
-        let photo = values.photo || "/img/no-image.png";
         let updateCity = {
             name: values.name,
             continent: values.continent,
-            photo: photo,
+            photo: values.photo,
             population: values.population,
-            userId: "636d210297606439046194bb",
+            userId: id,
         };
-        axios.put(`${apiUrl}/cities/${city._id}`, updateCity)
-            .then(res => {
-                if(res.data.success){
+        let headers = {headers: {'Authorization': `Bearer ${token}`}}
+            axios.put(`${apiUrl}/cities/${cId}`, updateCity, headers)
+                .then(res => {
+                    if(res.data.success){
+                        swal({
+                            title:'success',
+                            text: res.data.message,
+                            icon:'success',
+                        })
+                        navigate('/mycities')
+                    }else{
+                        res.data.message.forEach(el=> notify(el.message))
+                    }
+                })
+                .catch((err) => {
                     swal({
-                        title:'success',
-                        text: res.data.message,
-                        icon:'success',
-                    })
-                    navigate('/mycities')
-                }else{
-                    let error = res.data.message[0].message
-                    notify(error)
-                }
-            })
-            .catch((err) => {
-                swal({
-                    title:'Error',
-                    text: err.response.data.message,
-                    icon:'error',
-            })
+                        title:'Error',
+                        text: err.response.data,
+                        icon:'error',
+                })
         })
     }
 

@@ -12,8 +12,9 @@ export default function MyHotels() {
     let dispatch = useDispatch()
     let {getHotelsUser,deleteHotel} = hotelsActions
     let navigate = useNavigate()
+    let{id} = useSelector(state => state.userReducer)
     useEffect(() => {
-        dispatch(getHotelsUser('636d210297606439046194ba'))
+        dispatch(getHotelsUser(id))
     }, []);
 
 let Delete = (e)=>{
@@ -37,7 +38,7 @@ let Delete = (e)=>{
         navigate('/myhotels')
     });
 }
-console.log(userHotels)
+
 
 
     return (
