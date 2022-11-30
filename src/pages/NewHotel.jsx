@@ -4,11 +4,13 @@ import { useNavigate } from 'react-router-dom'
 import swal from 'sweetalert'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useSelector } from 'react-redux';
 
 export default function NewHotel() {
 
     let formRef = useRef(null)
     let navigate = useNavigate()
+    let {id, token} = useSelector(state => state.userReducer)
 
     let notify = (text)=>{
         toast.warn(text, {
@@ -34,9 +36,10 @@ export default function NewHotel() {
             photo: photo,
             capacity: values.population,
             cityID:"636d3af27ccd7c6ea97b82e2",
-            userID:"636d210297606439046194ba"
+            userID: id
         }
-        axios.post('http://localhost:8080/api/hotels', newhotel)
+        let headers = {headers: {'Authorization': `Bearer ${token}`}}
+        axios.post('http://localhost:8080/api/hotels', newhotel, headers)
             .then(res => {
                 if(res.data.success){
                     let id = res.data.response._id
@@ -54,7 +57,7 @@ export default function NewHotel() {
             .catch((err) => {
                 swal({
                     title:'Error',
-                    text: err.response.data.message,
+                    text: err.response.data,
                     icon:'error',
             })
         })

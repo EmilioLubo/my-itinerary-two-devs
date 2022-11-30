@@ -34,6 +34,7 @@ const userReducer = createReducer(initialState,(item)=>{
                     name:user.name,
                     logged:true,
                     role:user.role,
+                    id: user._id,
                     token:token,
                     load:false,
                     error:false
@@ -69,8 +70,8 @@ const userReducer = createReducer(initialState,(item)=>{
                     ...state,
                     name:user.user.name,
                     photo:user.user.photo,
-                    role:user.user.role,
                     logged:true,
+                    role:user.user.role,
                     id:user.user._id,
                     token:token,
                     load:false,
@@ -105,6 +106,7 @@ const userReducer = createReducer(initialState,(item)=>{
                 localStorage.removeItem('token')
                 let newState = {
                     ...state,
+                    id:'',
                     photo: '',
                     name: '',
                     logged: false,

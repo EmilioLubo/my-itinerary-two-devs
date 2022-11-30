@@ -1,16 +1,17 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {Link, useNavigate } from 'react-router-dom'
 import itinerariesActions from '../redux/actions/itinerariesActions'
 import swal from 'sweetalert'
 
-export default function CardItineraryyUser  ({name, id, photo, description, price, duration}) {
+export default function CardItineraryyUser  ({name, itId, photo, description, price, duration}) {
 
     const navigate = useNavigate()
     const {deleteItinerary} = itinerariesActions
     const dispatch = useDispatch()
+    let {token} = useSelector(state => state.userReducer)
     
-    let deleteHandler = (e)=> {
+    let deleteHandler = ()=> {
         swal({
             title: "Are you sure?",
             text: "Once deleted, you will not be able to recover this",
@@ -20,12 +21,20 @@ export default function CardItineraryyUser  ({name, id, photo, description, pric
         })
         .then((willDelete) => {
             if (willDelete) {
-                dispatch(deleteItinerary(e.target.id))
-                swal("!has been deleted!", {
-                    icon: "success",
-                });
+                    dispatch(deleteItinerary({itId, token}))
+                    .then(res => {
+                        console.log(res);
+                        swal('Has been deleted!', {
+                            icon: "success",
+                        })
+                    })
+                    .catch(err => {
+                        swal(err.payload.response, {
+                            icon: "error",
+                        })
+                    })
             } else {
-            swal("Your itinerary is safe!");
+                swal("Your itinerary is safe!");
             }
             navigate('/myitineraries')
         })
@@ -41,8 +50,8 @@ export default function CardItineraryyUser  ({name, id, photo, description, pric
                 <p>Price: ${price}</p>
                 <p>Duration: {duration} hs.</p>
                 <div className='flex j-evenly w-100'>
-                     <Link className='card-button' to={`/edititinerary/${id}`}>Edit</Link>
-                    <button id={id} onClick={deleteHandler} className='card-button'>Delete</button>
+                     <Link className='card-button' to={`/edititinerary/${itId}`}>Edit</Link>
+                    <button onClick={deleteHandler} className='card-button'>Delete</button>
                 </div>
                 
             </article>

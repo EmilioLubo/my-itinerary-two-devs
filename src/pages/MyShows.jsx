@@ -4,7 +4,6 @@ import swal from "sweetalert";
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import showsActions from "../redux/actions/showAction";
-import userAction from "../redux/actions/userAction";
 import CreateShow from "../components/CreateShow";
 
 
@@ -13,19 +12,15 @@ export default function MyShows({id}) {
     let navigate = useNavigate()
     let {getShow,deleteShow}= showsActions
     let dispatch = useDispatch()
-    let {signToken} = userAction
     let [push,setPush]= useState(false)
-
     let {token} = useSelector(state=>state.userReducer)
-    let tokenStore =  JSON.parse(localStorage.getItem('token'))
-    tokenStore = tokenStore.token.user
-
+    
 
 
 
     useEffect(() => {
         dispatch(getShow(id))
-        dispatch(signToken(tokenStore))
+        
     }, []);
 
     
@@ -33,7 +28,11 @@ export default function MyShows({id}) {
 
     let erase = (e)=>{
     let id = e.target.value
-    if(token === tokenStore){
+    let headers = {headers: {'Authorization': `Bearer ${token}`}}
+    let datos = {
+        id,
+        headers
+    }
         swal({
         title: "Are you sure?",
         text: "Once deleted, you will not be able to recover this",
@@ -46,13 +45,13 @@ export default function MyShows({id}) {
         swal("!has been deleted!", {
             icon: "success",
         });
-        dispatch(deleteShow(id))
+        dispatch(deleteShow(datos))
         } else {
         swal("Your show is safe!");
         }
         navigate('/myshows')
     });
-    }
+    
     
 }
 
