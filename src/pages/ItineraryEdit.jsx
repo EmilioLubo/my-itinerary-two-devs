@@ -98,7 +98,7 @@ export const ItineraryEdit = () => {
                 .catch((err) => {
                     swal({
                         title:'Error',
-                        text: err.response.data,
+                        text: err.message,
                         icon:'error',
                 })
         })

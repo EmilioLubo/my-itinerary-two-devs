@@ -522,6 +522,12 @@ hr{
 .repo-links:active{
   color: #000;
 }
+.reactions{
+  width: 2rem;
+}
+.reactions:hover{
+  cursor: pointer;
+}
 @media screen and (max-width: 320px){
   .check-label{
     font-size: .8em;
