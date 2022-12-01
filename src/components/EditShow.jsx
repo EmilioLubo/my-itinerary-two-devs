@@ -7,9 +7,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux'
 
-
-
-
 export default function Edit({id}) {
     let navigate = useNavigate()
     let {token} = useSelector(state => state.userReducer)

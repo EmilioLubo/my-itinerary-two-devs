@@ -42,7 +42,7 @@ export const SignUp = ({userRole}) => {
             swal({
                 title: "Are you sure?",
                 text: "I want to submit the form to sign up.",
-                icon:"success",
+                icon:"warning",
                 buttons: true,
                 dangerMode: true,
             })
@@ -65,7 +65,7 @@ export const SignUp = ({userRole}) => {
                     .catch(err => {
                         swal({
                             title:'Error',
-                            text: err.response.data.message,
+                            text: err.message,
                             icon:'error',
                         })
                     })

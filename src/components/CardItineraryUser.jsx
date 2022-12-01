@@ -23,7 +23,6 @@ export default function CardItineraryyUser  ({name, itId, photo, description, pr
             if (willDelete) {
                     dispatch(deleteItinerary({itId, token}))
                     .then(res => {
-                        console.log(res);
                         swal('Has been deleted!', {
                             icon: "success",
                         })

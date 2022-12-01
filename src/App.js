@@ -22,6 +22,7 @@ import userActions from "./redux/actions/userAction";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
 import { NewItinerary } from "./pages/NewItinerary";
+import { NewReaction } from "./pages/NewReaction";
 
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
           <Route path="/mycities" element={<MyCities/>} />
           <Route path="/newhotel" element={<NewHotel/>}/>
           <Route path="/myhotels" element={<MyHotels />}/>
+          <Route path="/newreaction" element={<NewReaction/>}/>
         </Route>
         <Route element={<ProtectedRoute isAllowed={!!logged && role === 'user'} reDirect={'/'}/>}>
           <Route path="/myitineraries" element={<MyItineraries/>}/>
