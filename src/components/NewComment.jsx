@@ -9,7 +9,7 @@ import commentActions from '../redux/actions/commentAction';
 
 
 
-export default function NewComment({show}) {
+export default function NewComment({show , itin}) {
     let {id}=useSelector(store => store.userReducer)
     let dispatch = useDispatch()
     let {createComent,getComent}= commentActions
@@ -31,15 +31,16 @@ export default function NewComment({show}) {
         datos.comment= e.target.value
     }
     let req ={
-        id:show,
-        showID:true
+        show,
+        itin
     }
     
-
+    
     let datos = {
-        userID:id,
-        showID:show,
+        userID:id
     }
+
+    show? datos.showID = show : datos.itinerarieID=itin
 
     let submit = (e) =>{
         e.preventDefault()

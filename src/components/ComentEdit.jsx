@@ -4,23 +4,30 @@ import { useDispatch, useSelector } from 'react-redux'
 import swal from "sweetalert";
 
 
-export default function ComentEdit({_id,photo,coments,name,show,erase,user}) {
+export default function ComentEdit({_id,photo,coments,name,show,itin ,erase,user}) {
     let [push,setPush] = useState(false)
     let {token,id,logged} = useSelector(store=>store.userReducer)
     let editRef = useRef(null)
     let inputRef = useRef(null)
 let dispatch = useDispatch()
 let {getComent,editComent} = commentActions
+let req = {
+    itin,
+    show
+}
 
     useEffect(()=>{
-        dispatch(getComent(show))
+        dispatch(getComent(req)) 
     },[])
+
+
 
 let headers = {headers: {'Authorization': `Bearer ${token}`}}
 
 let coment = (e)=>{
-    datos.comment= e.target.value
+    datos.comment = e.target.value
 }
+
 
 
 
@@ -29,7 +36,7 @@ let datos = {
     userID:id
 }
 let edit = ()=>{
-  datos.showID = editRef.current.value
+  datos.id = editRef.current.value
  
     swal({
         title: "Are you sure?",
@@ -45,7 +52,7 @@ let edit = ()=>{
         });
         dispatch(editComent(datos))
         inputRef.current.value = ''
-        dispatch(getComent(show))
+        dispatch(getComent(req))
         } else {
         swal("Your comment is same!");
         }
@@ -68,7 +75,7 @@ let edit = ()=>{
             }
         
         {push ? (<div className='flex j-evenly'>
-        <input type='text' className='input-com' name='coment' onChange={coment} ref={inputRef} placeholder='your comment...' />
+        <input type='text' className='input-com' name='coment' onChange={coment} ref={inputRef}  placeholder='your comment...' />
         <button className='boton-1'  onClick={edit}>Edit</button>
 </div>):''}
     </div>
