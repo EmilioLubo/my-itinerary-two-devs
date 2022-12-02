@@ -68,14 +68,14 @@ export const NewItinerary = () => {
                 .catch((err) => {
                     swal({
                         title:'Error',
-                        text: err.response.data,
+                        text: err.message,
                         icon:'error',
                 })
         })
     }
 
   return (
-    <div className='bg-hotel w-100 min-h'>
+                    <div className='bg-hotel w-100 min-h'>
                         <h1 className='text-center pt-2 mb-3'>New Itinerary</h1>
                         <form ref={formRef} className='flex f-column g-1 align-center' onSubmit={submitHandler}>
                             <label className='fw'>

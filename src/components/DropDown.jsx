@@ -44,12 +44,15 @@ export const DropDown = () => {
                         <li><Link className='nav-link' to='/myshows'>My Shows</Link></li>
                     </>:<></> }
                     {(logged && role === 'admin') ?
-                    <>
-                        <li><Link className='nav-link' to='/mycities'>My Cities</Link></li>
-                        <li><Link className='nav-link' to='/myhotels'>My Hotels</Link></li>
-                    <li><Link className='nav-link' to='/newcity'>Add new city</Link></li>
-                    <li><Link className='nav-link' to='/newhotel'>Add new hotel</Link></li>
-                    </>:<></> }
+                        <>
+                            <li><Link className='nav-link' to='/mycities'>My Cities</Link></li>
+                            <li><Link className='nav-link' to='/myhotels'>My Hotels</Link></li>
+                            <li><Link className='nav-link' to='/newcity'>Add new city</Link></li>
+                            <li><Link className='nav-link' to='/newhotel'>Add new hotel</Link></li>
+                            <li><Link className='nav-link' to='/newreaction'>Add new reaction</Link></li>
+                        </> :
+                        <></> 
+                    }
                 </ul>
             </div>
   )
