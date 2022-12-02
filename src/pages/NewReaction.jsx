@@ -12,6 +12,8 @@ export const NewReaction = () => {
     let formRef = useRef()
     let selectRef = useRef()
     let [selectDefault, setSelectDefault] = useState('')
+    let [radio, setRadio] = useState('itineraries')
+    let [shows, setShows] = useState([])
     let {itineraries} = useSelector(state => state.itinerariesReducer)
     let dispatch = useDispatch()
     let {getItineraries} = itinerariesActions
@@ -32,18 +34,31 @@ export const NewReaction = () => {
 
     useEffect(() => {
         dispatch(getItineraries())
+        axios.get(`${apiUrl}/shows`)
+            .then(res => setShows(res.data.response))
     }, [])
 
     let submitHandler = (e) => {
         e.preventDefault()
         const formData = new FormData(formRef.current)
         const values = Object.fromEntries(formData)
-        let newReaction = {
-            itineraryId: values.itinerary,
-            name: values.name,
-            icon: values.icon,
-            iconBack: values.iconBack,
-        };
+        let newReaction
+        if(values.itinerary){
+                newReaction = {
+                itineraryId: values.itinerary,
+                name: values.name,
+                icon: values.icon,
+                iconBack: values.iconBack,
+            }
+        }
+        if(values.show){
+            newReaction = {
+                showId: values.show,
+                name: values.name,
+                icon: values.icon,
+                iconBack: values.iconBack,
+            }
+        }
         swal({
             title: "Are you sure?",
             text: "I want to submit new reaction.",
@@ -84,11 +99,28 @@ export const NewReaction = () => {
         setSelectDefault(selectRef.current.value)
     }
 
+    let handleRadio = (e) => {
+        setRadio(e.target.value)
+    }
+
   return (
     <div className='bg-hotel w-100 min-h'>
                         <h1 className='text-center pt-2 mb-3'>New Reaction</h1>
+                        <form onChange={handleRadio}>
+                            <fieldset>
+                                <legend>Select activity:</legend>
+                                <label>Itineraries
+                                    <input type="radio" name="activity" value={'itineraries'} />
+                                </label>
+                                <label>Shows
+                                    <input type="radio" name="activity" value={'shows'} />
+                                </label>
+                            </fieldset>
+                        </form>
                         <form ref={formRef} className='flex f-column g-1 align-center' onSubmit={submitHandler}>
-                            <label className='fw'>
+                                {radio === 'itineraries' ?
+                                <>
+                                <label className='fw'>
                                 <legend>Reaction itinerary:</legend>
                                 <select className="fs-2" name="itinerary" value={selectDefault} onChange={handleSelect} ref={selectRef} required>
                                     <option disabled value={""}>
@@ -96,6 +128,19 @@ export const NewReaction = () => {
                                     </option>
                                     {itineraries.map(el => <option key={el._id} value={el._id}>{el.name}</option>)}
                                 </select></label>
+                                </> :
+                                <>
+                                <label className='fw'>
+                                <legend>Reaction show:</legend>
+                                <select className="fs-2" name="show" value={selectDefault} onChange={handleSelect} ref={selectRef} required>
+                                    <option disabled value={""}>
+                                    Select a show
+                                    </option>
+                                    {shows.length > 0 ?
+                                    shows.map(el => <option key={el._id} value={el._id}>{el.name}</option>): <></>}
+                                </select></label>
+                                </>
+                            }
                             <label className='fw'>
                             <legend>Reaction name:</legend>
                             <input className='w-100' type="text" name='name' min='3' required /></label>

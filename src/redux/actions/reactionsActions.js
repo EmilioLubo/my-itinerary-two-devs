@@ -14,6 +14,18 @@ const getItineraryReactions = createAsyncThunk('getItineraryReactions', async(it
         }
     }
 })
+const getShowReactions = createAsyncThunk('getShowReactions', async(idS) => {
+    try {
+        let res = await axios.get(`${apiUrl}/reactions?showId=${idS}`)
+        return {
+            reactions: res.data.response
+        }
+    } catch (error) {
+        return{
+            error: 'Error'
+        }
+    }
+})
 const getMyReactions = createAsyncThunk('getMyReactions', async(id) => {
     try {
         let res = await axios.get(`${apiUrl}/reactions?userId=${id}`)
@@ -26,7 +38,7 @@ const getMyReactions = createAsyncThunk('getMyReactions', async(id) => {
         }
     }
 })
-const updateReactions = createAsyncThunk('updateReactions', async({token, name, itId}) => {
+const updateItReactions = createAsyncThunk('updateItReactions', async({token, name, itId}) => {
     let headers = {headers: {'Authorization': `Bearer ${token}`}}
     try {
         let res = await axios.put(`${apiUrl}/reactions?name=${name}&itineraryId=${itId}`, null, headers)
@@ -39,10 +51,23 @@ const updateReactions = createAsyncThunk('updateReactions', async({token, name, 
         }
     }
 })
+const updateShReactions = createAsyncThunk('updateShReactions', async({token, name, idS}) => {
+    let headers = {headers: {'Authorization': `Bearer ${token}`}}
+    try {
+        let res = await axios.put(`${apiUrl}/reactions?name=${name}&showId=${idS}`, null, headers)
+        return {
+            reaction: res.data.response
+        }
+    } catch (error) {
+        return{
+            error: 'Error'
+        }
+    }
+})
 const deleteReaction = createAsyncThunk('deleteReaction', async({token, itId}) => {
     let headers = {headers: {'Authorization': `Bearer ${token}`}}
     try {
-        let res = await axios.put(`${apiUrl}/reactions/${itId}`, null, headers)
+        let res = await axios.put(`${apiUrl}/reactions/${itId}`, null,headers)
         return {
             reaction: res.data.response
         }
@@ -55,8 +80,10 @@ const deleteReaction = createAsyncThunk('deleteReaction', async({token, itId}) =
 
 const reactionsActions = {
     getItineraryReactions,
+    getShowReactions,
     getMyReactions,
-    updateReactions,
+    updateItReactions,
+    updateShReactions,
     deleteReaction
 }
 export default reactionsActions

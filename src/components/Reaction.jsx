@@ -4,16 +4,24 @@ import { useDispatch } from 'react-redux'
 import reactionsActions from '../redux/actions/reactionsActions'
 
 
-export const Reaction = ({name, icon, userId, itId, reload}) => {
+
+export const Reaction = ({name, icon, userId, itId, reload, idS}) => {
 
     let {token} = useSelector(state => state.userReducer)
     let dispatch = useDispatch()
-    let {updateReactions} = reactionsActions
+    let {updateItReactions, updateShReactions} = reactionsActions
     
     let clickHandler = () => {
-        dispatch(updateReactions({token, name, itId}))
-        .then(res => reload())
-        .catch(err => err)
+        if(itId){
+            dispatch(updateItReactions({token, name, itId}))
+            .then(res => reload())
+            .catch(err => console.log(err))
+        }
+        if(idS){
+            dispatch(updateShReactions({token, name, idS}))
+            .then(res => reload())
+            .catch(err => console.log(err))
+        }
     }
 
   return (
