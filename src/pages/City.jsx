@@ -5,10 +5,9 @@ import { Itinerary } from '../components/Itinerary'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../url'
-import Comments from '../components/Comments'
+
 
 export const City = () => {
-    let [push,setPush]= useState(false)
     let [city, setCity] = useState([])
     let {id} = useParams()
 
@@ -31,12 +30,10 @@ export const City = () => {
             </div> 
         }
         <div className='flex j-center g-1 mt-2 p-1'>
-        <button className='btn' onClick={()=>setPush(!push)}>Comments</button>
+        <button className='btn'>Comments</button>
             <Link to={'/cities'} className='btn'>Go back</Link>
         </div>
-        <div className='flex j-center g-1 mt-2 pb-2'>
-            {push?(<Comments/>): ''}
-        </div>
+
     </div>
   )
 }

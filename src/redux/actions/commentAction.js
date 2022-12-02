@@ -2,9 +2,12 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import apiUrl from "../../url";
 
-const getComent = createAsyncThunk('getComent',async(id)=>{
+const getComent = createAsyncThunk('getComent',async(datos)=>{
+    let res
     try{
-        let res =  axios.get(`${apiUrl}/comments?showID=${id}`)
+        datos.show?
+        res =  axios.get(`${apiUrl}/comments?showID=${datos.show}`):
+        res =  axios.get(`${apiUrl}/comments?itinerarieID=${datos.itin}`)
         return{ comment: (await res).data.response}
     }catch (error) {
         return{
@@ -26,7 +29,7 @@ const delComent = createAsyncThunk('delComent',async(datos)=>{
     }
 })
 const editComent = createAsyncThunk('editComent',async(datos)=>{
-    let id = datos.showID
+    let id = datos.id
     let token = datos.headers
     let dato = {
         userID:datos.userID,

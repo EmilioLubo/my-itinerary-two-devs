@@ -4,6 +4,7 @@ import { Reaction } from './Reaction'
 import { useDispatch, useSelector } from 'react-redux'
 import reactionsActions from '../redux/actions/reactionsActions'
 
+
 export const Activity = ({itId, name, photo, description, price, duration, idS}) => {
   
   const [itineraryReactions, setItieneraryReactions] = useState()
@@ -25,7 +26,7 @@ export const Activity = ({itId, name, photo, description, price, duration, idS})
   
   return (
     <>
-    <div className='act-card flex f-column g-1'>
+    <div className='act-card flex f-column g-1 '>
         <img className='act-img' src={photo} alt={name} />
         <h3 className='text-center'>{name}</h3>
         <p>{description}</p>
@@ -43,10 +44,9 @@ export const Activity = ({itId, name, photo, description, price, duration, idS})
             <></>
           }
         </div>
-
     </div>
     <div className='flex j-center g-1 mt-2 pb-2 w-100'>
-            {push?(<Comments show={id} />): ''}
+            {push?(<Comments show={idS} itin={itId} />): ''}
         </div>
     </>
   )
