@@ -297,6 +297,67 @@ a{
   border-radius: 5%;
   background-color: var(--light);
 }
+.coment-body{
+  background-color: #fff;
+  border-radius: 1rem;
+}
+.coment-body img{
+  width: 6rem;
+  height: 6rem;
+}
+.bg-user{
+  background-color: rgb(148, 222, 148);
+  width: 92.5%;
+  margin: .5rem 1.5rem .5rem 1.5rem;
+  border-radius: 1rem;
+}
+.bg-user article{
+  padding: 1rem;
+}
+.coment{
+  background-color: #b3bbc0;
+  width: 92.5%;
+  margin: .5rem 1.5rem .5rem 1.5rem;
+  border-radius: 1rem;
+}
+.coment article{
+  padding: 1rem;
+}
+.p-text{
+  background-color: #fff;
+  width: 100%;
+  padding: .5rem;
+  border-radius: 3px;
+}
+.input-com{
+  width: 80%;
+  border-radius: 1rem;
+  height: 2.5rem;
+  font-size: 1rem;
+}
+.input-com:hover{
+  box-shadow: 2px 2px 2px 3px #99baef;
+}
+.boton{
+  background-color: #17175a;
+  padding: .2rem;
+  color: #fff;
+  border-radius: 3px;
+  margin: 0 .5rem 1rem 0 ;
+}
+
+.boton-1{
+  background-color: #17175a;
+  padding: .8rem;
+  color: #fff;
+  border-radius: 3px;
+  margin: 0 .2rem 1rem 0 ;
+}
+.boton:hover,.boton-1:hover{
+  box-shadow: 2px 2px 2px 2px gray;
+  transform: scale(1.1);
+  cursor: pointer;
+}
 .scrollTop{
   position: fixed;
   font-Size: 40px;

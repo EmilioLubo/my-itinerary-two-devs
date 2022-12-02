@@ -36,7 +36,7 @@ function App() {
       dispatch(signToken(token.token.user))
     }
   }, [logged])
-  
+
   return (
     <Layout>
       <Routes>

@@ -5,9 +5,10 @@ import { ShowsH } from '../components/ShowsH'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../url'
+import Comments from '../components/Comments'
 
 export const Hotel = () => {
-
+    let [push,setPush]= useState(false)
     let [hotel, setHotel] = useState([])
     let {id} = useParams()
 
@@ -31,8 +32,11 @@ export const Hotel = () => {
             </div> 
         }
         <div className='flex j-center g-1 mt-2 pb-2'>
-            <button className='btn'>Comments</button>
+            <button className='btn' onClick={()=>setPush(!push)}>Comments</button>
             <Link to={'/hotels'} className='btn'>Go back</Link>
+        </div>
+        <div className='flex j-center g-1 mt-2 pb-2'>
+            {push?(<Comments id={id} />): ''}
         </div>
     </div>
   )
