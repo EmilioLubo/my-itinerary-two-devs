@@ -30,7 +30,7 @@ export const MyReactions = () => {
             myReactions ?
             myReactions.map(el => {
                 return (
-                    <CardUserReactions itId={el._id} key={el._id} photo={el.itineraryId.photo} itName={el.itineraryId.name} reload={reload} rName={el.name}/>
+                    <CardUserReactions itId={el._id} key={el._id} photo={el.itineraryId ? el.itineraryId.photo : el.showId.photo} itName={el.itineraryId ? el.itineraryId.name : el.showId.name} reload={reload} rName={el.name}/>
                 )
             }) :
             <h2 className='text-center'>No Reactions</h2>
