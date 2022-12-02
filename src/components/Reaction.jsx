@@ -13,6 +13,7 @@ export const Reaction = ({name, icon, userId, itId, reload}) => {
     let clickHandler = () => {
         dispatch(updateReactions({token, name, itId}))
         .then(res => reload())
+        .catch(err => err)
     }
 
   return (

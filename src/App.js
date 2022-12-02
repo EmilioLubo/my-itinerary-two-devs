@@ -23,6 +23,7 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
 import { NewItinerary } from "./pages/NewItinerary";
 import { NewReaction } from "./pages/NewReaction";
+import { MyReactions } from "./pages/MyReactions";
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
         <Route path="/cities/:id" element={<City/>}/>
         <Route element={<ProtectedRoute isAllowed={!!logged} reDirect={'/'}/> }>
           <Route path="/profile/:id" element={<Profile/>}/>
+          <Route path="/myreactions" element={<MyReactions/>}/>
         </Route>
         <Route element={<ProtectedRoute isAllowed={!!logged && role === 'admin'} reDirect={'/'}/> }>
           <Route path="/newcity" element={<NewCity/>}/>
