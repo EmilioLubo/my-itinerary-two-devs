@@ -1,29 +1,29 @@
-
 import React, {useEffect, useState} from 'react'
+import Comments from './Comments'
 import { Reaction } from './Reaction'
 import { useDispatch, useSelector } from 'react-redux'
 import reactionsActions from '../redux/actions/reactionsActions'
-import Comments from './Comments'
 
-export const Activity = ({itId, name, photo, description, price, duration,idS}) => {
-  let [push,setPush]= useState(false)
+
+export const Activity = ({itId, name, photo, description, price, duration, idS}) => {
+  
   const [itineraryReactions, setItieneraryReactions] = useState()
   const {id} = useSelector(state => state.userReducer)
   const [updated, setUpdated] = useState(false)
   const dispatch = useDispatch()
   const {getItineraryReactions} = reactionsActions
+  let [push,setPush]= useState(false)
 
-  
   useEffect(() => {
     dispatch(getItineraryReactions(itId))
     .then(res => setItieneraryReactions(res.payload.reactions))
+    .catch(err => console.log(err))
   },[updated])
   
   let reload = () =>{
     setUpdated(!updated)
   }
   
-
   return (
     <>
     <div className='act-card flex f-column g-1 '>
@@ -32,7 +32,9 @@ export const Activity = ({itId, name, photo, description, price, duration,idS}) 
         <p>{description}</p>
         <p>{duration}</p>
         <p>Price: $ {price.toFixed(2)}</p>
+
         <button className='btn' onClick={()=>setPush(!push)}>Comments</button>
+
         <div className='flex j-evenly gap-1'>
           {
             itineraryReactions ? 

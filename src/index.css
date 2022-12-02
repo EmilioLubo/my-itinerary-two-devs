@@ -457,6 +457,7 @@ a{
 .btn:hover{
   opacity: 0.75;
   box-shadow: 0 0 10px #17175a;
+  cursor: pointer;
 }
 hr{
   width: 50%;
@@ -588,6 +589,18 @@ hr{
 }
 .reactions:hover{
   cursor: pointer;
+}
+.like{
+  background-color: greenyellow;
+}
+.not-like{
+  background-color: grey;
+}
+.love{
+  background-color: pink;
+}
+.surprise{
+  background-color: orange;
 }
 @media screen and (max-width: 320px){
   .check-label{
