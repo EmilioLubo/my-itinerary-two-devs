@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../url'
 
-export const Hotel = () => {
 
+export const Hotel = () => {
     let [hotel, setHotel] = useState([])
     let {id} = useParams()
 
@@ -19,7 +19,7 @@ export const Hotel = () => {
 
   return (
     
-    <div className='w-100 bg-hotel'>
+    <div className='w-100 bg-hotel flex f-column align-center'>
         <h1 className='text-center'>Hotel detail</h1>
         {hotel.name ?
             <div>
@@ -30,10 +30,11 @@ export const Hotel = () => {
                 <h2 className='text-center'>There`s no Hotels</h2>
             </div> 
         }
-        <div className='flex j-center g-1 mt-2 pb-2'>
+        <div className='flex j-center g-1 mt-2 pb-2 w-100'>
             <button className='btn'>Comments</button>
             <Link to={'/hotels'} className='btn'>Go back</Link>
         </div>
+        
     </div>
   )
 }

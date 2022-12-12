@@ -22,6 +22,8 @@ import userActions from "./redux/actions/userAction";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
 import { NewItinerary } from "./pages/NewItinerary";
+import { NewReaction } from "./pages/NewReaction";
+import { MyReactions } from "./pages/MyReactions";
 
 
 function App() {
@@ -36,7 +38,7 @@ function App() {
       dispatch(signToken(token.token.user))
     }
   }, [logged])
-  
+
   return (
     <Layout>
       <Routes>
@@ -49,6 +51,7 @@ function App() {
         <Route path="/cities/:id" element={<City/>}/>
         <Route element={<ProtectedRoute isAllowed={!!logged} reDirect={'/'}/> }>
           <Route path="/profile/:id" element={<Profile/>}/>
+          <Route path="/myreactions" element={<MyReactions/>}/>
         </Route>
         <Route element={<ProtectedRoute isAllowed={!!logged && role === 'admin'} reDirect={'/'}/> }>
           <Route path="/newcity" element={<NewCity/>}/>
@@ -56,6 +59,7 @@ function App() {
           <Route path="/mycities" element={<MyCities/>} />
           <Route path="/newhotel" element={<NewHotel/>}/>
           <Route path="/myhotels" element={<MyHotels />}/>
+          <Route path="/newreaction" element={<NewReaction/>}/>
         </Route>
         <Route element={<ProtectedRoute isAllowed={!!logged && role === 'user'} reDirect={'/'}/>}>
           <Route path="/myitineraries" element={<MyItineraries/>}/>

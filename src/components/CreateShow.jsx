@@ -2,10 +2,13 @@ import React ,{useState,useEffect} from 'react'
 import apiUrl from '../url'
 import axios from 'axios'
 import swal from 'sweetalert'
-import { useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import showsActions from '../redux/actions/showAction'
+import { useNavigate } from 'react-router-dom';
+
+
 
 
 
@@ -13,6 +16,8 @@ import { useSelector } from 'react-redux'
 export default function CreateShow({id}) {
     let [selectDefault, setSelectDefault] = useState("");
     let [dato,setDato]= useState([])
+    let {getShow}= showsActions
+    let dispatch = useDispatch()
     let navigate = useNavigate()
     let {token} = useSelector(state => state.userReducer)
     let notify = (text)=>{
@@ -24,7 +29,7 @@ export default function CreateShow({id}) {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "light",
+            theme: "dark",
             });
     }
     useEffect(()=>{
@@ -74,6 +79,7 @@ let photo = (e)=>{
                         text:'The show was created',
                         icon:'success',
                     })
+                    dispatch(getShow(id))
                     navigate('/myshows')
                 }else{
                     let error = res.data.message
@@ -83,18 +89,14 @@ let photo = (e)=>{
             })
             .catch(err => {
                 console.log(err)
-                swal({
-                    title:'Error',
-                    text:err.response.data.message,
-                    icon:'error',
-                })
+                
             })
     }
 
 
   return (
     <div className='w-100'>
-        <form className='edit flex f-column align-center ' onSubmit={submit}>
+        <form className='edit flex f-column align-center ' onSubmit={submit} >
         <label className="inputs flex f-column">
                     <legend>Choose hotel</legend>
                     <select className="fs-2" name="hotel"  onChange={handleSelect}  required>

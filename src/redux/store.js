@@ -7,6 +7,7 @@ import itinerariesReducer from "./reducers/itinerariesReducer";
 import showsReducer from "./reducers/showReducer";
 import userReducer from "./reducers/userReducer"
 import profileReducer from "./reducers/profileReducer";
+import comentReducer from "./reducers/commentReducer";
 
 export const store = configureStore({
     reducer:{
@@ -17,6 +18,7 @@ export const store = configureStore({
                 itinerariesReducer,
                 showsReducer,
                 userReducer,
-                profileReducer
+                profileReducer,
+                comentReducer
             }
 })

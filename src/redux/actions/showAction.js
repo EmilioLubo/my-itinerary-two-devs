@@ -18,8 +18,9 @@ const getShow = createAsyncThunk('getShow',async(id)=>{
 const deleteShow = createAsyncThunk('deleteShow',async(datos)=>{
     let id = datos.id
     let token = datos.headers
+    let coment = datos.comment
     try{
-        let res = await axios.delete(`${apiUrl}/shows/${id}`,token)
+        let res = await axios.delete(`${apiUrl}/shows/${id}`,coment,token)
         return {
             _id: res.data.response._id
         }

@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../url'
 
-export const City = () => {
 
+export const City = () => {
     let [city, setCity] = useState([])
     let {id} = useParams()
 
@@ -30,9 +30,10 @@ export const City = () => {
             </div> 
         }
         <div className='flex j-center g-1 mt-2 p-1'>
-            <button className='btn'>Comments</button>
+        <button className='btn'>Comments</button>
             <Link to={'/cities'} className='btn'>Go back</Link>
         </div>
+
     </div>
   )
 }
